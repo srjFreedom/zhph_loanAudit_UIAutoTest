@@ -1,0 +1,48 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         sqxx_data.py
+Variables         sqxx_locator.py
+
+*** Keywords ***
+总部初审查询条件输入合同号
+    [Arguments]    ${cscontractNo}
+    Wait Until Element Is Visible    ${Locator_contractNo}    10
+    input text    ${Locator_contractNo}    ${cscontractNo}
+
+初审列表点击搜索按钮
+    Wait Until Element Is Visible    ${Locator_chuShenAnNiu}    10
+    click element    ${Locator_souSuo}
+
+点击初审按钮
+    Wait Until Element Is not Visible    ${Locator_csLieBiao}    10
+    click element    ${Locator_chuShenAnNiu}
+    Wait Until Element Is Visible    ${Locator_csframe}    10
+    Select Frame    ${Locator_csframe}
+
+点击初审附件查看
+    Wait Until Element Is Visible    ${Locator_csfjck}    10
+    click element    ${Locator_csfjck}
+
+点击初审申请信息
+    Wait Until Element Is Visible    ${Locator_cssqxx}    10
+    click element    ${Locator_cssqxx}
+
+点击初审第三方征信
+    Wait Until Element Is Visible    ${Locator_csdsfzx}    10
+    click element    ${Locator_csdsfzx}
+
+点击初审人行简版征信
+    Wait Until Element Is Visible    ${Locator_csrhjbzx}    10
+    click element    ${Locator_csrhjbzx}
+
+点击初审电话核查
+    Wait Until Element Is Visible    ${Locator_csdhhc}    10
+    click element    ${Locator_csdhhc}
+
+点击初审反欺诈内匹
+    Wait Until Element Is Visible    ${Locator_csfqznp}    10
+    click element    ${Locator_csfqznp}
+
+点击初审审核结论
+    Wait Until Element Is Visible    ${Locator_csshjl}    10
+    click element    ${Locator_csshjl}

@@ -1,0 +1,99 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         khxxgl_data.py
+Variables         khxxgl_locator.py
+
+*** Keywords ***
+客户信息管理查询条件输入合同号
+    [Arguments]    ${khxxglcontractNo}
+    Wait Until Element Is Visible    ${lc_khxxglcontractNo}    10
+    input text    ${lc_khxxglcontractNo}    ${khxxglcontractNo}
+
+客户信息管理点击查询
+    Wait Until Element Is Visible    ${lc_khxxglcx}    10
+    click element    ${lc_khxxglcx}
+
+客户信息管理勾选案件
+    Wait Until Element Is Visible    ${lc_khxxglcheckBox}    10
+    click element    ${lc_khxxglcheckBox}
+
+客户信息管理点击导入模板下载按钮
+    Wait Until Element Is Visible    ${lc_khxxgldrmbxz}    10
+    click element    ${lc_khxxgldrmbxz}
+
+客户信息管理点击导入（使用系统模板）按钮
+    Wait Until Element Is Visible    ${lc_khxxgldr}    10
+    click element    ${lc_khxxgldr}
+
+客户信息管理点击导出按钮
+    Wait Until Element Is Visible    ${lc_khxxgldc}    10
+    click element    ${lc_khxxgldc}
+
+客户信息管理点击跟进按钮
+    Wait Until Element Is Visible    ${lc_khxxglgj}    10
+    click element    ${lc_khxxglgj}
+
+客户信息管理点击修改跟进人按钮
+    Wait Until Element Is Visible    ${lc_khxxglxggjr}    10
+    click element    ${lc_khxxglxggjr}
+
+客户信息管理选择修改的跟进人
+    [Arguments]    ${khxxglworkUserNames}
+    Wait Until Element Is Visible    ${lc_khxxglworkUserNames}    10
+    Select From List By Label    ${lc_khxxglworkUserNames}    ${khxxglworkUserNames}
+
+客户信息管理修改跟进人点击确定
+    Wait Until Element Is Visible    ${lc_khxxglfpqd}    10
+    click element    ${lc_khxxglfpqd}
+
+客户信息管理修改跟进人点击取消
+    Wait Until Element Is Visible    ${lc_khxxglfpqx}    10
+    click element    ${lc_khxxglfpqx}
+    Wait Until Element Is Not Visible    ${lc_khxxglfpqx}    10
+
+客户信息管理跟进人修改成功点击确定
+    Wait Until Element Is Visible    ${lc_khxxglfpcgqd}    10
+    click element    ${lc_khxxglfpcgqd}
+    Wait Until Element Is Not Visible    ${lc_khxxglfpcgqd}    10
+
+客户信息管理点选联系对象
+    [Arguments]    ${khxxgllxdx}
+    Wait Until Element Is Visible    ${lc_khxxgllxdx0}    10
+    Run Keyword If    '${khxxgllxdx}'=='客户'    click element    ${lc_khxxgllxdx0}
+    ...    ELSE IF    '${khxxgllxdx}'=='联系人1'    click element    ${lc_khxxgllxdx1}
+    ...    ELSE IF    '${khxxgllxdx}'=='联系人2'    click element    ${lc_khxxgllxdx2}
+    ...    ELSE    Should Be True    ${False}    "联系对象"参数输入错误
+
+客户信息管理点选操作
+    [Arguments]    ${khxxglcz}
+    Wait Until Element Is Visible    ${lc_khxxglcz0}    10
+    Run Keyword If    '${khxxglcz}'=='呼入'    click element    ${lc_khxxglcz0}
+    ...    ELSE IF    '${khxxglcz}'=='呼出'    click element    ${lc_khxxglcz1}
+    ...    ELSE    Should Be True    ${False}    "操作"参数输入错误
+
+客户信息管理选择联系情况
+    [Arguments]    ${khxxgllxqk}
+    Wait Until Element Is Visible    ${lc_khxxgllxqk}    10
+    Select From List By Label    ${lc_khxxgllxqk}    ${khxxgllxqk}
+
+客户信息管理选择联系结果
+    [Arguments]    ${khxxgllxjg}
+    Wait Until Element Is Visible    ${lc_khxxgllxjg}    10
+    Select From List By Label    ${lc_khxxgllxjg}    ${khxxgllxjg}
+
+客户信息管理输入备注
+    [Arguments]    ${khxxglremark}
+    Wait Until Element Is Visible    ${lc_khxxglremark}    10
+    input text    ${lc_khxxglremark}    ${khxxglremark}
+
+客户信息管理点击操作信息的保存
+    Wait Until Element Is Visible    ${lc_khxxglczxxbc}    10
+    click element    ${lc_khxxglczxxbc}
+
+客户信息管理点击操作信息保存成功确定
+    Wait Until Element Is Visible    ${lc_khxxglczcgqd}    10
+    click element    ${lc_khxxglczcgqd}
+
+客户信息管理点击受理按钮
+    Wait Until Element Is Visible    ${lc_khxxglsl}    10
+    click element    ${lc_khxxglsl}

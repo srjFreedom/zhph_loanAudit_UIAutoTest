@@ -1,0 +1,58 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         sqjfk_locator.py
+Variables         sqjfq_data.py
+
+*** Keywords ***
+根据合同编号查询_sqjfk
+    [Arguments]    ${contractNo_sqjfk}
+    input text    ${sqjfk_contractNo_id}    ${contractNo_sqjfk}
+
+根据借款人查询_sqjfk
+    [Arguments]    ${className_sqjfk}
+    input text    ${sqjfk_clientName_id}    ${className_sqjfk}
+
+根据身份证号查询_sqjfk
+    [Arguments]    ${idCard_sqjfk}
+    input text    ${sqjfk_idCard_id}    ${idCard_sqjfk}
+
+根据放款状态查询_sqjfk
+    [Arguments]    ${status_sqjfk}
+    Select From List    ${sqjfk_status_id}    ${status_sqjfk}
+
+根据分公司查询_sqjfk
+    [Arguments]    ${chosen_search_sqjfk}
+    set selenium speed    1
+    click element    ${sqjfk_chosen_single_class}
+    input text    ${sqjfk_chosen_input_xpath}    ${chosen_search_sqjfk}
+    click element    ${sqjfk_chosen_xpath}
+
+点击查询按钮_sqjfk
+    click button    ${sqjfk_query_xpath}
+
+点击详细信息_sqjfk
+    click element    ${sqjfk_xxxx_xpath}
+
+点击返回按钮_sqjfk
+    click element    ${sqjfk_goBack_xpath}
+
+点击附件信息_sqjfk
+    click element    ${sqjfk_fjxx_xpath}
+
+提交放款_sqjfk
+    click element    ${sqjfk_tjfk_xpath}
+
+点击团贷网（普标）_sqjfk
+    click element    link=团贷网（普标)
+
+点击团贷网（循环贷)_sqjfk
+    click element    link=团贷网(循环贷)
+
+点击延边农商银行_sqjfk
+    click element    link=延边农商银行
+
+点击拒绝_sqjfk
+    click element    ${sqjfk_refuse_xpath}
+
+点击回退_sqjfk
+    click element    ${sqjfk_huitui_xpath}

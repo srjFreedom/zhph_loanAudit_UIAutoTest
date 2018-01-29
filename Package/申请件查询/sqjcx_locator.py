@@ -1,0 +1,16 @@
+# -*- coding: utf8 -*-
+
+lc_sqjcxcontractNo = 'id = contractNo'
+lc_sqjcxclientName = 'id = clientName'
+lc_sqjcxidCard = 'id = idCard'
+lc_sqjcxcx = 'xpath = //*[@id="dynamic-table_wrapper"]/div[1]/div[2]/label/button'
+lc_sqjcxzzjzym = 'xpath = //*[@id="dynamic-table_wrapper"]/div[2]/div/div[1]/div[2]/div[2]/div'
+lc_sqjcxsqjxx = 'xpath = //*[@id="applyQuery-table"]/tbody/tr[1]/td[25]/button'
+lc_sqjcxdcExcel = 'xpath = //*[@id="dynamic-table_wrapper"]/div[3]/div/div/a'
+lc_sqjcxsqxx = 'xpath = //*[@id="intenntionLi"]/a'
+lc_sqjcxfjck = 'xpath = //*[@id="attachmentLi"]/a'
+lc_sqjcxdsfzx = 'xpath = //*[@id="creditPlatLi"]/a'
+lc_sqjcxrhjbzx = 'xpath = //*[@id="loanApprovalLi"]/a'
+lc_sqjcxapptsxx = 'xpath = //*[@id="app-message"]/a'
+lc_sqjcxfqznp = 'xpath = //*[@id="myTab"]/li[6]/a'
+lc_sqjcxshjl = 'xpath = //*[@id="creditCheckLi"]/a'

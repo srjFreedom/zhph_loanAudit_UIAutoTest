@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         yxjcx_data.py
+Variables         yxjcx_locator.py
+
+*** Keywords ***
+营销件查询查询条件输入客户姓名
+    [Arguments]    ${yxjcxtelClientName}
+    Wait Until Element Is Visible    ${lc_yxjcxtelClientName}    10
+    input text    ${lc_yxjcxtelClientName}    ${yxjcxtelClientName}
+
+营销件查询点击搜索
+    Wait Until Element Is Visible    ${lc_yxjcxck}    10
+    click element    ${lc_yxjcxsousuo}
+
+营销件查询点击查看按钮
+    Wait Until Element Is Not Visible    ${lc_yxjcxzzjzym}    10
+    click element    ${lc_yxjcxck}
+
+营销件查询点击关闭
+    Wait Until Element Is Visible    ${lc_yxjcxgb}    10
+    click element    ${lc_yxjcxgb}
+    Wait Until Element Is Not Visible    ${lc_yxjcxgb}    10

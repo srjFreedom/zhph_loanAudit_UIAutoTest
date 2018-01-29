@@ -1,0 +1,40 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         fdgl_data.py
+Variables         fdgl_locator.py
+
+*** Keywords ***
+分单管理查询条件输入电销人员
+    [Arguments]    ${fdgltelPeopleName}
+    Wait Until Element Is Visible    ${lc_fdgltelPeopleName}    10
+    input text    ${lc_fdgltelPeopleName}    ${fdgltelPeopleName}
+
+分单管理查询条件输入客户姓名
+    [Arguments]    ${fdglclientName}
+    Wait Until Element Is Visible    ${lc_fdglclientName}    10
+    input text    ${lc_fdglclientName}    ${fdglclientName}
+
+分单管理查询条件点击搜索
+    Wait Until Element Is Visible    ${lc_fdgltelPeopleEdit}    10
+    click element    ${lc_fdglcxsousuo}
+
+分单管理点击修改电销人员
+    Wait Until Element Is Not Visible    ${lc_fdglzzjzym}    10
+    click element    ${lc_fdgltelPeopleEdit}
+
+分单管理修改电销人员输入搜索
+    [Arguments]    ${fdglxgsousuo}
+    Wait Until Element Is Visible    ${lc_fdglxgsousuo}    10
+    input text    ${lc_fdglxgsousuo}    ${fdglxgsousuo}
+
+分单管理修改电销人员点选电销人员
+    Wait Until Element Is Visible    ${lc_fdglxgcz}    10
+    click element    ${lc_fdglxgcz}
+
+分单管理修改电销人员点击关闭按钮
+    Wait Until Element Is Visible    ${lc_fdglxggb}    10
+    click element    ${lc_fdglxggb}
+
+分单管理修改吊销人员点击提交修改
+    Wait Until Element Is Visible    ${lc_fdglxgtjgg}    10
+    click element    ${lc_fdglxgtjgg}

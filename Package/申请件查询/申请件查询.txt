@@ -1,0 +1,60 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         sqjcx_data.py
+Variables         sqjcx_locator.py
+
+*** Keywords ***
+申请件查询查询条件输入合同号
+    [Arguments]    ${sqjcxcontractNo}
+    Wait Until Element Is Visible    ${lc_sqjcxcontractNo}    10
+    input text    ${lc_sqjcxcontractNo}    ${sqjcxcontractNo}
+
+申请件查询查询条件点击查询按钮
+    Wait Until Element Is Visible    ${lc_sqjcxcx}    10
+    click element    ${lc_sqjcxcx}
+
+申请件查询点击申请件信息按钮
+    Wait Until Element Is Not Visible    ${lc_sqjcxzzjzym}    10
+    click element    ${lc_sqjcxsqjxx}
+
+申请件查询查询条件输入借款人
+    [Arguments]    ${sqjcxclientName}
+    Wait Until Element Is Visible    ${lc_sqjcxclientName}    10
+    input text    ${lc_sqjcxclientName}    ${sqjcxclientName}
+
+申请件查询查询条件输入身份证号码
+    [Arguments]    ${sqjcxidCard}
+    Wait Until Element Is Visible    ${lc_sqjcxidCard}    10
+    input text    ${lc_sqjcxidCard}    ${sqjcxidCard}
+
+申请件查询点击导出Excel文件按钮
+    Wait Until Element Is Visible    ${lc_sqjcxdcExcel}    10
+    click element    ${lc_sqjcxdcExcel}
+
+申请件查询点击申请信息页签
+    Wait Until Element Is Visible    ${lc_sqjcxsqxx}    10
+    click element    ${lc_sqjcxsqxx}
+
+申请件查询点击附件查看页签
+    Wait Until Element Is Visible    ${lc_sqjcxfjck}    10
+    click element    ${lc_sqjcxfjck}
+
+申请件查询点击第三方征信页签
+    Wait Until Element Is Visible    ${lc_sqjcxdsfzx}    10
+    click element    ${lc_sqjcxdsfzx}
+
+申请件查询点击人行征信简版页签
+    Wait Until Element Is Visible    ${lc_sqjcxrhjbzx}    10
+    click element    ${lc_sqjcxrhjbzx}
+
+申请件查询点击app推送信息页签
+    Wait Until Element Is Visible    ${lc_sqjcxapptsxx}    10
+    click element    ${lc_sqjcxapptsxx}
+
+申请件查询点击反欺诈内匹页签
+    Wait Until Element Is Visible    ${lc_sqjcxfqznp}    10
+    click element    ${lc_sqjcxfqznp}
+
+申请件查询点击审核结论页签
+    Wait Until Element Is Visible    ${lc_sqjcxshjl}    10
+    click element    ${lc_sqjcxshjl}

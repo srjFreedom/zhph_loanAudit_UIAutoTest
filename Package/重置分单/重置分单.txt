@@ -1,0 +1,61 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         czfd_data.py
+Variables         czfd_locator.py
+
+*** Keywords ***
+重置分单查询条件输入合同号
+    [Arguments]    ${czfdcontractNo}
+    Wait Until Element Is Visible    ${lc_czfdcontractNo}    10
+    input text    ${lc_czfdcontractNo}    ${czfdcontractNo}
+
+重置分单查询条件输入借款人
+    [Arguments]    ${czfdclientName}
+    Wait Until Element Is Visible    ${lc_czfdclientName}    10
+    input text    ${lc_czfdclientName}    ${czfdclientName}
+
+重置分单查询条件输入身份证号
+    [Arguments]    ${czfdidCard}
+    Wait Until Element Is Visible    ${lc_czfdidCard}    10
+    input text    ${lc_czfdidCard}    ${czfdidCard}
+
+重置分单查询条件点击查询
+    Wait Until Element Is Visible    ${lc_czfdxgshr}    10
+    click element    ${lc_czfdcx}
+
+重置分单勾选案件
+    Wait Until Element Is Not Visible    ${lc_czfdzzjzym}    10
+    click element    ${lc_czfdbtSelectItem}
+
+重置分单点击修改审核人按钮
+    Wait Until Element Is Not Visible    ${lc_czfdzzjzym}    10
+    click element    ${lc_czfdxgshr}
+
+重置分单点击重置分单按钮
+    Wait Until Element Is Visible    ${lc_czfdgetClient}    10
+    click element    ${lc_czfdgetClient}
+
+重置分单人员调配选择人员
+    [Arguments]    ${czfdparentOrgNumberTwoSeelet}    ${czfdorgNumberTwoSelect}    ${czfduserModelSelect}
+    sleep    1
+    Select From List By Label    ${lc_czfdparentOrgNumberTwoSeelet}    ${czfdparentOrgNumberTwoSeelet}
+    sleep    1
+    Select From List By Label    ${lc_czfdorgNumberTwoSelect}    ${czfdorgNumberTwoSelect}
+    sleep    1
+    Select From List By Label    ${lc_czfduserModelSelect}    ${czfduserModelSelect}
+
+重置分单人员调配点击确定
+    Wait Until Element Is Visible    ${lc_czfdrytpqd}    10
+    click element    ${lc_czfdrytpqd}
+
+重置分单人员调配点击取消
+    Wait Until Element Is Visible    ${lc_czfdrytpqx}    10
+    click element    ${lc_czfdrytpqx}
+
+重置分单修改审核人成功确定
+    Wait Until Element Is Visible    ${lc_czfdcgqd}    10
+    click element    ${lc_czfdcgqd}
+
+重置分单重置成功确定
+    Wait Until Element Is Visible    ${lc_czfdcgqd}    10
+    click element    ${lc_czfdcgqd}

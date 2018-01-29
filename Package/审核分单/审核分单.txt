@@ -1,0 +1,54 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         shfd_data.py
+Variables         shfd_locator.py
+
+*** Keywords ***
+审核分单查询条件输入合同号
+    [Arguments]    ${shfdcontractNo}
+    Wait Until Element Is Visible    ${Locator_shfdcontractNo}    10
+    input text    ${Locator_shfdcontractNo}    ${shfdcontractNo}
+
+点击查询按钮
+    Wait Until Element Is Visible    ${Locator_HEAD_OFFICE_TRIAL}    10
+    click button    ${Locator_cx}
+
+点击修改审核人按钮
+    Wait Until Element Is Not Visible    ${Locator_ddymjz}    10
+    click element    ${Locator_HEAD_OFFICE_TRIAL}
+
+选择信审科室一
+    [Arguments]    ${xsks1}
+    sleep    1
+    Select From List By Label    ${Locator_xsks1}    ${xsks1}
+
+选择信审科室二
+    [Arguments]    ${xsks2}
+    sleep    1
+    Select From List By Label    ${Locator_xsks2}    ${xsks2}
+
+选择审核人员
+    [Arguments]    ${userModelSelect}
+    sleep    1
+    Select From List By Label    ${Locator_userModelSelect}    ${userModelSelect}
+
+点击分配确定按钮
+    Wait Until Element Is Visible    ${Locator_qxzfpdshy_qd}    10
+    click button    ${Locator_qxzfpdshy_qd}
+
+点击分配取消按钮
+    Wait Until Element Is Visible    ${Locator_qxzfpdshy_qx}    10
+    click button    ${Locator_qxzfpdshy_qx}
+
+点击修改成功确定按钮
+    Wait Until Element Is Visible    ${Locator_xgshrcgqd}    10
+    click button    ${Locator_xgshrcgqd}
+
+ig_审核分单指定案件
+    [Arguments]    ${shfdcontractNo}
+    Wait Until Element Is Visible    ${Locator_shfdcontractNo}    10
+    input text    ${Locator_shfdcontractNo}    ${shfdcontractNo}
+    Wait Until Element Is Visible    ${Locator_cx}    10
+    click button    ${Locator_cx}
+    Wait Until Element Is Visible    ${Locator_HEAD_OFFICE_TRIAL}    10
+    click element    ${Locator_HEAD_OFFICE_TRIAL}

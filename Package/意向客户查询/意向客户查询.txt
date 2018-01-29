@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         yxkhcx_data.py
+Variables         yxkhcx_locator.py
+
+*** Keywords ***
+意向客户查询查询条件输入开始日期
+    [Arguments]    ${yxkhcxstartDate}
+    Wait Until Element Is Visible    ${lc_yxkhcxstartDate}    10
+    input text    ${lc_yxkhcxstartDate}    ${yxkhcxstartDate}
+
+意向客户查询查询条件输入结束日期
+    [Arguments]    ${yxkhcxendDate}
+    Wait Until Element Is Visible    ${lc_yxkhcxendDate}    10
+    input text    ${lc_yxkhcxendDate}    ${yxkhcxendDate}
+
+意向客户查询点击查询按钮
+    Wait Until Element Is Visible    ${lc_yxkhcxcx}    10
+    click element    ${lc_yxkhcxcx}
+
+意向客户查询点击导出按钮
+    Wait Until Element Is Visible    ${lc_yxkhcxdc}    10
+    click element    ${lc_yxkhcxdc}

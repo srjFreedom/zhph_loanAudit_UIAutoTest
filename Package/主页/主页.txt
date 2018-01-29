@@ -1,0 +1,528 @@
+*** Settings ***
+Variables         zy_locator.py
+Library           Selenium2Library
+
+*** Keywords ***
+点击分公司业务管理
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+
+进入身份信息录入
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_sfxxlr}    10
+    click element    ${Locator_sfxxlr}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入待确认申请件-消分
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_dqrsqjxf}    10
+    click element    ${Locator_dqrsqjxf}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入申请信息录入
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_sqxxlr}    10
+    click element    ${Locator_sqxxlr}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入入户调查
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_rhdc}    10
+    click element    ${Locator_rhdc}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入业务进度查询
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_ywjdcx}    10
+    click element    ${Locator_ywjdcx}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入分公司远程签约
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_fgsycqy}    10
+    click element    ${Locator_fgsycqy}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入分公司线下签约
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_fgsxxqy}    10
+    click element    ${Locator_fgsxxqy}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入卡号变更申请
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_khbgsq}    10
+    click element    ${Locator_khbgsq}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入申请件查询-分公司
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_sqjcxfgs}    10
+    click element    ${Locator_sqjcxfgs}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入卡号变更查询
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_khbgcx}    10
+    click element    ${Locator_khbgcx}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入银行卡解绑查询
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_yhkjbcx}    10
+    click element    ${Locator_yhkjbcx}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入客户经理灰黑名单
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_khjlhhmd}    10
+    click element    ${Locator_khjlhhmd}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入电话提醒记录查询-分公司
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_dhtxjlcxfgs}    10
+    click element    ${Locator_dhtxjlcxfgs}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入带电话提醒客户
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_ddhtxkh}    10
+    click element    ${Locator_ddhtxkh}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入分公司扣款预约
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_fgskkyy}    10
+    click element    ${Locator_fgskkyy}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入分公司扣款管理
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_fgskkgl}    10
+    click element    ${Locator_fgskkgl}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入进件查重
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_jjcc}    10
+    click element    ${Locator_jjcc}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入分公司风险查询
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_fgsfxcx}    10
+    click element    ${Locator_fgsfxcx}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入当日结清客户
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_drjqkh}    10
+    click element    ${Locator_drjqkh}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+进入运营商认证结果查询-分公司
+    Wait Until Element Is Visible    ${Locator_fgsywgl}    10
+    click element    ${Locator_fgsywgl}
+    Wait Until Element Is Visible    ${Locator_yysrzjgcxfgs}    10
+    click element    ${Locator_yysrzjgcxfgs}
+    sleep    1
+    click element    ${Locator_fgsywgl}
+
+点击总部信审业务管理
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+
+进入总部预审
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_zbys}    10
+    click element    ${Locator_zbys}
+    sleep    1
+    click element    ${Locator_zbxsywgl}
+
+进入重置分单
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_czfd}    10
+    click element    ${Locator_czfd}
+    sleep    1
+    click element    ${Locator_zbxsywgl}
+
+进入审核人员管理
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_shrygl}    10
+    click element    ${Locator_shrygl}
+    sleep    1
+    click element    ${Locator_zbxsywgl}
+
+进入审核分单
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_shfd}    10
+    click element    ${Locator_shfd}
+    sleep    1
+    click element    ${Locator_zbxsywgl}
+
+进入总部初审
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_zbcs}    10
+    click element    ${Locator_zbcs}
+    sleep    1
+    click element    ${Locator_zbxsywgl}
+
+进入总部复审
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_zbfs}    10
+    click element    ${Locator_zbfs}
+    sleep    1
+    click element    ${Locator_zbxsywgl}
+
+进入修改状态
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_xgzt}    10
+    click element    ${Locator_xgzt}
+    sleep    1
+    Wait Until Element Is Visible    ${lc_xgztgetClient}    10
+    click element    ${Locator_zbxsywgl}
+
+进入分单配置
+    Wait Until Element Is Visible    ${Locator_zbxsywgl}    10
+    click element    ${Locator_zbxsywgl}
+    Wait Until Element Is Visible    ${Locator_fdpz}    10
+    click element    ${Locator_fdpz}
+    sleep    1
+    click element    ${Locator_zbxsywgl}
+
+点击总部运营管理
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+
+进入修改状态-技术部
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_xgztjsb}    10
+    click element    ${Locator_xgztjsb}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入签约复核
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_qyfh}    10
+    click element    ${Locator_qyfh}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入申请件放款
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_sqjfk}    10
+    click element    ${Locator_sqjfk}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入卡号变更审核
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_khbgsh}    10
+    click element    ${Locator_khbgsh}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入申请件查询总部
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_sqjcxzb}    10
+    click element    ${Locator_sqjcxzb}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入待电话提醒-总部客服
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_ddhtxzbkf}    10
+    click element    ${Locator_ddhtxzbkf}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入电话提醒记录查询
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_ddtxjlcx}    10
+    click element    ${Locator_ddtxjlcx}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入复核审核人员管理
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_fhshrygl}    10
+    click element    ${Locator_fhshrygl}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入复核审核分单
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_fhshfd}    10
+    click element    ${Locator_fhshfd}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入签约回退初审
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_qyhtcs}    10
+    click element    ${Locator_qyhtcs}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入签约回退复审
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_qyhtfs}    10
+    click element    ${Locator_qyhtfs}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入运营商认证结果查询
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_yysrzjgcx}    10
+    click element    ${Locator_yysrzjgcx}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入发送短信-总部客服
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_fsdxzbkf}    10
+    click element    ${Locator_fsdxzbkf}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+进入团贷合同状态查询
+    Wait Until Element Is Visible    ${Locator_zbyygl}    10
+    click element    ${Locator_zbyygl}
+    Wait Until Element Is Visible    ${Locator_tdhtztcx}    10
+    click element    ${Locator_tdhtztcx}
+    sleep    1
+    click element    ${Locator_zbyygl}
+
+点击风险管理中心
+    Wait Until Element Is Visible    ${Locator_fxglzx}    10
+    click element    ${Locator_fxglzx}
+
+进入申请件查询
+    Wait Until Element Is Visible    ${Locator_fxglzx}    10
+    click element    ${Locator_fxglzx}
+    Wait Until Element Is Visible    ${Locator_sqjcx}    10
+    click element    ${Locator_sqjcx}
+    sleep    1
+    click element    ${Locator_fxglzx}
+
+点击电销业务管理
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+
+进入客户信息管理
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+    Wait Until Element Is Visible    ${Locator_khxxgl}    10
+    click element    ${Locator_khxxgl}
+    sleep    1
+    click element    ${Locator_dxywgl}
+
+进入意向客户查询
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+    Wait Until Element Is Visible    ${Locator_yxkhcx}    10
+    click element    ${Locator_yxkhcx}
+    sleep    1
+    click element    ${Locator_dxywgl}
+
+进入电销人员管理
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+    Wait Until Element Is Visible    ${Locator_dxrygl}    10
+    click element    ${Locator_dxrygl}
+    sleep    1
+    click element    ${Locator_dxywgl}
+
+进入分单管理
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+    Wait Until Element Is Visible    ${Locator_fdgl}    10
+    click element    ${Locator_fdgl}
+    sleep    1
+    click element    ${Locator_dxywgl}
+
+进入循环贷营销管理
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+    Wait Until Element Is Visible    ${Locator_xhdyxgl}    10
+    click element    ${Locator_xhdyxgl}
+    sleep    1
+    click element    ${Locator_dxywgl}
+
+进入营销件查询
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+    Wait Until Element Is Visible    ${Locator_yxjcx}    10
+    click element    ${Locator_yxjcx}
+    sleep    1
+    click element    ${Locator_dxywgl}
+
+进入循环贷申请件查询
+    Wait Until Element Is Visible    ${Locator_dxywgl}    10
+    click element    ${Locator_dxywgl}
+    Wait Until Element Is Visible    ${Locator_xhdsqjcx}    10
+    click element    ${Locator_xhdsqjcx}
+    sleep    1
+    click element    ${Locator_dxywgl}
+
+点击系统管理
+    Wait Until Element Is Visible    ${Locator_xtgl}    10
+    click element    ${Locator_xtgl}
+
+进入机构管理
+    Wait Until Element Is Visible    ${Locator_xtgl}    10
+    click element    ${Locator_xtgl}
+    Wait Until Element Is Visible    ${Locator_jggl}    10
+    click element    ${Locator_jggl}
+    sleep    1
+    click element    ${Locator_xtgl}
+
+进入用户管理
+    Wait Until Element Is Visible    ${Locator_xtgl}    10
+    click element    ${Locator_xtgl}
+    Wait Until Element Is Visible    ${Locator_yhgl}    10
+    click element    ${Locator_yhgl}
+    sleep    1
+    click element    ${Locator_xtgl}
+
+点击财务管理
+    Wait Until Element Is Visible    ${Locator_cwgl}    10
+    click element    ${Locator_cwgl}
+
+进入借款人账户信息查询
+    Wait Until Element Is Visible    ${Locator_cwgl}    10
+    click element    ${Locator_cwgl}
+    Wait Until Element Is Visible    ${Locator_jkrzhxxcx}    10
+    click element    ${Locator_jkrzhxxcx}
+    sleep    1
+    Wait Until Element Is Not Visible    ${Locator_clz}    10
+    click element    ${Locator_cwgl}
+
+点击资金管理
+    Wait Until Element Is Visible    ${Locator_zjgl}    10
+    click element    ${Locator_zjgl}
+
+进入网银流水匹配
+    Wait Until Element Is Visible    ${Locator_zjgl}    10
+    click element    ${Locator_zjgl}
+    Wait Until Element Is Visible    ${Locator_wylspp}    10
+    click element    ${Locator_wylspp}
+    sleep    1
+    Wait Until Element Is Not Visible    ${Locator_clz}    10
+    click element    ${Locator_zjgl}
+
+进入网银流水匹配查询
+    Wait Until Element Is Visible    ${Locator_zjgl}    10
+    click element    ${Locator_zjgl}
+    Wait Until Element Is Visible    ${Locator_wylsppcx}    10
+    click element    ${Locator_wylsppcx}
+    sleep    1
+    Wait Until Element Is Not Visible    ${Locator_clz}    10
+    click element    ${Locator_zjgl}
+
+点击退款管理
+    Wait Until Element Is Visible    ${Locator_tkgl}    10
+    click element    ${Locator_tkgl}
+
+进入退款申请
+    Wait Until Element Is Visible    ${Locator_tkgl}    10
+    click element    ${Locator_tkgl}
+    Wait Until Element Is Visible    ${Locator_tksq}    10
+    click element    ${Locator_tksq}
+    sleep    1
+    click element    ${Locator_tkgl}
+
+进入退款查询
+    Wait Until Element Is Visible    ${Locator_tkgl}    10
+    click element    ${Locator_tkgl}
+    Wait Until Element Is Visible    ${Locator_tkcx}    10
+    click element    ${Locator_tkcx}
+    sleep    1
+    click element    ${Locator_tkgl}
+
+点击提前结清管理
+    Wait Until Element Is Visible    ${Locator_tqjqgl}    10
+    click element    ${Locator_tqjqgl}
+
+进入客户提前结清申请
+    Wait Until Element Is Visible    ${Locator_tqjqgl}    10
+    click element    ${Locator_tqjqgl}
+    Wait Until Element Is Visible    ${Locator_khtqjqsq}    10
+    click element    ${Locator_khtqjqsq}
+    sleep    1
+    click element    ${Locator_tqjqgl}
+
+进入客户提前结清查询
+    Wait Until Element Is Visible    ${Locator_tqjqgl}    10
+    click element    ${Locator_tqjqgl}
+    Wait Until Element Is Visible    ${Locator_khtqjqcx}    10
+    click element    ${Locator_khtqjqcx}
+    sleep    1
+    click element    ${Locator_tqjqgl}
+
+进入电销信息查询
+    Wait Until Element Is Visible    ${Locator_tqjqgl}    10
+    click element    ${Locator_tqjqgl}
+    Wait Until Element Is Visible    ${Locator_dxxxcx}    10
+    click element    ${Locator_dxxxcx}
+    sleep    1
+    click element    ${Locator_tqjqgl}

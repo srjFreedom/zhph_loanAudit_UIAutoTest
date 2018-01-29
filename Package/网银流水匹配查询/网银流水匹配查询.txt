@@ -1,0 +1,26 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         wylsppcx_data.py
+Variables         wylsppcx_locator.py
+
+*** Keywords ***
+网银流水匹配查询查询条件输入合同编号
+    [Arguments]    ${wylsppcxloanContractNo}
+    Wait Until Element Is Visible    ${lc_wylsppcxloanContractNo}    10
+    input text    ${lc_wylsppcxloanContractNo}    ${wylsppcxloanContractNo}
+
+网银流水匹配查询点击查询
+    Wait Until Element Is Visible    ${lc_wylsppcxcx}    10
+    click element    ${lc_wylsppcxcx}
+
+网银流水匹配查询点击详情
+    sleep    2
+    click element    ${lc_wylsppcxxq}
+
+网银流水匹配查询详情点击返回
+    Wait Until Element Is Visible    ${lc_wylsppcxfh}    10
+    click element    ${lc_wylsppcxfh}
+
+网银流水匹配查询点击导出EXCEL
+    Wait Until Element Is Visible    ${lc_wylsppcxdcExcel}    10
+    click element    ${lc_wylsppcxdcExcel}

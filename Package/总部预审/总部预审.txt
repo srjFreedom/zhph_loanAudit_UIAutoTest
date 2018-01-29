@@ -1,0 +1,51 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         zbys_data.py
+Variables         zbys_locator.py
+
+*** Keywords ***
+总部预审查询条件输入合同号
+    [Arguments]    ${zbyscontractNo}
+    Wait Until Element Is Visible    ${lc_zbyscx}    10
+    input text    ${lc_zbyscontractNo}    ${zbyscontractNo}
+
+总部预审查询条件点击查询按钮
+    Wait Until Element Is Visible    ${lc_zbyscx}    10
+    click element    ${lc_zbyscx}
+
+总部预审点击预审按钮
+    Wait Until Element Is Visible    ${lc_zbysys}    10
+    click element    ${lc_zbysys}
+    Wait Until Element Is Visible    ${lc_zbysframe}    10
+    select frame    ${lc_zbysframe}
+
+总部预审点击复议审核结论页签
+    Wait Until Element Is Visible    ${lc_zbysfyshjl}    10
+    click element    ${lc_zbysfyshjl}
+
+总部预审输入复议预审意见
+    [Arguments]    ${zbysapprovalOpinion}
+    Wait Until Element Is Visible    ${lc_zbysapprovalOpinion}    10
+    input text    ${lc_zbysapprovalOpinion}    ${zbysapprovalOpinion}
+
+总部预审选择复议预审结果
+    [Arguments]    ${zbysstatusReconsider}
+    Wait Until Element Is Visible    ${lc_zbysstatusReconsider}    10
+    Select From List By Label    ${lc_zbysstatusReconsider}    ${zbysstatusReconsider}
+
+总部预审选择回退至
+    [Arguments]    ${zbysht}
+    Wait Until Element Is Visible    ${lc_zbysht}    10
+    Select From List By Label    ${lc_zbysht}    ${zbysht}
+
+总部预审点击提交
+    Wait Until Element Is Visible    ${lc_zbystj}    10
+    click element    ${lc_zbystj}
+
+总部预审点击暂存
+    Wait Until Element Is Visible    ${lc_zbyszc}    10
+    click element    ${lc_zbyszc}
+
+总部预审点击提交成功确定
+    Wait Until Element Is Visible    ${lc_zbyshtcgqd}    10
+    click element    ${lc_zbyshtcgqd}

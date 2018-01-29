@@ -1,0 +1,20 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         xhdsqjcx_data.py
+Variables         xhdsqjcx_locator.py
+
+*** Keywords ***
+循环贷申请件查询查询条件输入客户姓名
+    [Arguments]    ${xhdsqjcxtelClientName}
+    Wait Until Element Is Visible    ${lc_xhdsqjcxtelClientName}    10
+    input text    ${lc_xhdsqjcxtelClientName}    ${xhdsqjcxtelClientName}
+
+循环贷申请件查询查询条件输入电销人员
+    [Arguments]    ${xhdsqjcxtelSaleUserName}
+    Wait Until Element Is Visible    ${lc_xhdsqjcxtelSaleUserName}    10
+    input text    ${lc_xhdsqjcxtelSaleUserName}    ${xhdsqjcxtelSaleUserName}
+
+循环贷申请件查询查询条件点击搜索
+    Wait Until Element Is Not Visible    ${lc_xhdsqjcxzzjzym}    10
+    click element    ${lc_xhdsqjcxsousuo}
+    Wait Until Element Is Not Visible    ${lc_xhdsqjcxzzjzym}    10

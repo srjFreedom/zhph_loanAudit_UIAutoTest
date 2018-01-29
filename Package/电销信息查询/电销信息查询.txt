@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         dxxxcx_data.py
+Variables         dxxxcx_locator.py
+
+*** Keywords ***
+电销信息查询查询条件输入身份证号
+    [Arguments]    ${dxxxcxidCard}
+    Wait Until Element Is Visible    ${lc_dxxxcxidCard}    10
+    input text    ${lc_dxxxcxidCard}    ${dxxxcxidCard}
+
+电销信息查询查询条件输入姓名
+    [Arguments]    ${dxxxcxclientName}
+    Wait Until Element Is Visible    ${lc_dxxxcxclientName}    10
+    input text    ${lc_dxxxcxclientName}    ${dxxxcxclientName}
+
+电销信息查询查询条件点击查询按钮
+    Wait Until Element Is Visible    ${lc_dxxxcxcx}    10
+    click element    ${lc_dxxxcxcx}
+
+电销信息查询点击导出按钮
+    Wait Until Element Is Visible    ${lc_dxxxcxdc}    10
+    click element    ${lc_dxxxcxdc}

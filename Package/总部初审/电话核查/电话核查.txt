@@ -1,0 +1,13 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         dhhx_locator.py
+
+*** Keywords ***
+点击电话核查保存按钮
+    Wait Until Element Is Visible    ${Locator_csdhhcbc}    10
+    click element    ${Locator_csdhhcbc}
+
+点击电话核查保存确定按钮
+    sleep    3
+    Wait Until Element Is Visible    ${Locator_csdhhcqd}    10
+    click element    ${Locator_csdhhcqd}

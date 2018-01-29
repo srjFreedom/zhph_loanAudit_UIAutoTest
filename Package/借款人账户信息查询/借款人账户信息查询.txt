@@ -1,0 +1,22 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         jkrzhxxcx_data.py
+Variables         jkrzhxxcx_locator.py
+
+*** Keywords ***
+借款人账户信息查询查询条件输入合同号
+    [Arguments]    ${jkrzhxxcxcontractNo}
+    Wait Until Element Is Visible    ${lc_jkrzhxxcxcontractNo}    10
+    input text    ${lc_jkrzhxxcxcontractNo}    ${jkrzhxxcxcontractNo}
+
+借款人账户信息查询点击查询
+    Wait Until Element Is Visible    ${lc_jkrzhxxcxcx}    10
+    click element    ${lc_jkrzhxxcxcx}
+
+借款人账户信息查询点击合同下载
+    Wait Until Element Contains    ${lc_jkrzhxxcxts}    1    10
+    click element    ${lc_jkrzhxxcxhtxz}
+
+借款人账户信息查询点击导出报表
+    Wait Until Element Is Visible    ${lc_jkrzhxxcxdcbb}    10
+    click element    ${lc_jkrzhxxcxdcbb}

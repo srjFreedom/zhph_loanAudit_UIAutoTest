@@ -1,0 +1,56 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         xhdyxgl_data.py
+Variables         xhdyxgl_locator.py
+
+*** Keywords ***
+循环贷营销管理查询条件输入客户姓名
+    [Arguments]    ${xhdyxgltelClientName}
+    Wait Until Element Is Visible    ${lc_xhdyxgltelClientName}    10
+    input text    ${lc_xhdyxgltelClientName}    ${xhdyxgltelClientName}
+
+循环贷营销管理查询条件输入电销人员
+    [Arguments]    ${xhdyxgltelPeopleName}
+    Wait Until Element Is Visible    ${lc_xhdyxgltelPeopleName}    10
+    input text    ${lc_xhdyxgltelPeopleName}    ${xhdyxgltelPeopleName}
+
+循环贷营销管理点击搜索按钮
+    Wait Until Element Is Visible    ${lc_xhdyxglcl}    10
+    click element    ${lc_xhdyxglsousuo}
+
+循环贷营销管理点击处理按钮
+    Wait Until Element Is Not Visible    ${lc_xhdyxglzzjzym}    10
+    click element    ${lc_xhdyxglcl}
+
+循环贷营销管理点选联系电话类型
+    [Arguments]    ${xhdyxgllxdhlx}
+    Wait Until Element Is Visible    ${lc_xhdyxglclsjhm}    10
+    run keyword if    '${xhdyxgllxdhlx}'=='手机号码'    click element    ${lc_xhdyxglclsjhm}
+    ...    ELSE IF    '${xhdyxgllxdhlx}'=='单位电话'    click element    ${lc_xhdyxglcldwdh}
+    ...    ELSE IF    '${xhdyxgllxdhlx}'=='住宅电话'    click element    ${lc_xhdyxglclzzdh}
+    ...    ELSE    Should Be True    ${False}    "联系电话类型"参数输入错误！
+
+循环贷营销管理点选联系结果
+    [Arguments]    ${xhdyxgllxjg}
+    Wait Until Element Is Visible    ${lc_xhdyxglclwyx}    10
+    run keyword if    '${xhdyxgllxjg}'=='无意向'    click element    ${lc_xhdyxglclwyx}
+    ...    ELSE IF    '${xhdyxgllxjg}'=='有意向'    click element    ${lc_xhdyxglclyyx}
+    ...    ELSE    Should Be True    ${False}    "联系结果"参数输入错误！
+
+循环贷营销管理输入备注
+    [Arguments]    ${xhdyxglclbz}
+    Wait Until Element Is Visible    ${lc_xhdyxglclbz}    10
+    input text    ${lc_xhdyxglclbz}    ${xhdyxglclbz}
+
+循环贷营销管理处理框点击关闭按钮
+    Wait Until Element Is Visible    ${lc_xhdyxglclgb}    10
+    click element    ${lc_xhdyxglclgb}
+
+循环贷营销管理处理框点击保存按钮
+    Wait Until Element Is Visible    ${lc_xhdyxglclbc}    10
+    click element    ${lc_xhdyxglclbc}
+    Wait Until Element Is Not Visible    ${lc_xhdyxglclzzjzym}    10
+
+循环贷营销管理处理框点击提交更改按钮
+    Wait Until Element Is Visible    ${lc_xhdyxglcltjgg}    10
+    click element    ${lc_xhdyxglcltjgg}

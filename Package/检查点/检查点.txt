@@ -1,0 +1,28 @@
+*** Settings ***
+Library           Selenium2Library
+Library           Screenshot    D:/FailedScreenshot
+Library           DatabaseVerify
+
+*** Keywords ***
+check_文本
+    [Arguments]    ${checkText}
+    [Documentation]    当前页面是否含有给定文本内容
+    sleep    3
+    ${res}    get text    xpath = /html
+    Take Screenshot
+    Should Contain    ${res}    ${checkText}
+
+check_数据库
+    [Arguments]    ${checkSQL}    ${checkData}
+    [Documentation]    sql查询数据与给定数据对比
+    sleep    3
+    ${factData}    Get Data    ${checkSQL}
+    Should Be Equal As Strings    ${factData}    ${checkData}
+
+case通过
+    [Documentation]    放在手工测试用例第一行以标注该条用例通过
+    Should Be True    ${True}
+
+case失败
+    [Documentation]    放在手工测试用例第一行以标注该条用例失败
+    Should Be True    ${False}

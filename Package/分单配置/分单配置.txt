@@ -1,0 +1,77 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         fdpz_data.py
+Variables         fdpz_locator.py
+
+*** Keywords ***
+分单配置选择申请产品类型
+    [Arguments]    ${fdpzproductId}
+    Wait Until Element Is Visible    ${lc_fdpzproductId}    10
+    sleep    1
+    input text    ${lc_fdpzproductId}    ${fdpzproductId}
+    Press Key    ${lc_fdpzproductId}    \\13
+
+分单配置选择销售分部
+    [Arguments]    ${fdpzorgRegionId}
+    Wait Until Element Is Visible    ${lc_fdpzorgRegionId}    10
+    sleep    0.5
+    input text    ${lc_fdpzorgRegionId}    ${fdpzorgRegionId}
+    Press Key    ${lc_fdpzorgRegionId}    \\13
+
+分单配置选择销售片区
+    [Arguments]    ${fdpzsaleAreaId}
+    Wait Until Element Is Visible    ${lc_fdpzsaleAreaId}    10
+    sleep    0.5
+    input text    ${lc_fdpzsaleAreaId}    ${fdpzsaleAreaId}
+    Press Key    ${lc_fdpzsaleAreaId}    \\13
+
+分单配置选择分公司名称
+    [Arguments]    ${fdpzareaCompanyId}
+    Wait Until Element Is Visible    ${lc_fdpzareaCompanyId}    10
+    sleep    0.5
+    input text    ${lc_fdpzareaCompanyId}    ${fdpzareaCompanyId}
+    Press Key    ${lc_fdpzareaCompanyId}    \\13
+
+分单配置选择信审初审科室一
+    [Arguments]    ${fdpztrialOrg}
+    Wait Until Element Is Visible    ${lc_fdpztrialOrg}    10
+    sleep    0.5
+    Select From List By Label    ${lc_fdpztrialOrg}    ${fdpztrialOrg}
+
+分单配置选择信审初审科室二
+    [Arguments]    ${fdpztrialOrg1}
+    Wait Until Element Is Visible    ${lc_fdpztrialOrg1}    10
+    sleep    0.5
+    input text    ${lc_fdpztrialOrg1}    ${fdpztrialOrg1}
+    Press Key    ${lc_fdpztrialOrg1}    \\13
+
+分单配置选择初审人员
+    [Arguments]    ${fdpzfirstCreditId}
+    Wait Until Element Is Visible    ${lc_fdpzfirstCreditId}    10
+    sleep    0.5
+    input text    ${lc_fdpzfirstCreditId}    ${fdpzfirstCreditId}
+    Press Key    ${lc_fdpzfirstCreditId}    \\13
+
+分单配置选择信审复审科室一
+    [Arguments]    ${fdpzreviewOrg}
+    Wait Until Element Is Visible    ${lc_fdpzreviewOrg}    10
+    sleep    0.5
+    Select From List By Label    ${lc_fdpzreviewOrg}    ${fdpzreviewOrg}
+
+分单配置选择信审复审科室二
+    [Arguments]    ${fdpzreviewOrg1}
+    Wait Until Element Is Visible    ${lc_fdpzreviewOrg1}    10
+    sleep    0.5
+    input text    ${lc_fdpzreviewOrg1}    ${fdpzreviewOrg1}
+    Press Key    ${lc_fdpzreviewOrg1}    \\13
+
+分单配置选择复审人员
+    [Arguments]    ${fdpzrepateCreditId}
+    Wait Until Element Is Visible    ${lc_fdpzrepateCreditId}    10
+    sleep    0.5
+    input text    ${lc_fdpzrepateCreditId}    ${fdpzrepateCreditId}
+    Press Key    ${lc_fdpzrepateCreditId}    \\13
+
+分单配置点击配置分单规则按钮
+    Wait Until Element Is Visible    ${lc_fdpzpzfdgz}    10
+    click element    ${lc_fdpzpzfdgz}

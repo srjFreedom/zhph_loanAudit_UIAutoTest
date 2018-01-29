@@ -1,0 +1,94 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         shrygl_data.py
+Variables         shrygl_locator.py
+
+*** Keywords ***
+审核人员管理查询条件输入员工编号
+    [Arguments]    ${shrygluserCode}
+    Wait Until Element Is Visible    ${lc_shrygluserCode}    10
+    input text    ${lc_shrygluserCode}    ${shrygluserCode}
+
+审核人员管理查询条件输入员工姓名
+    [Arguments]    ${shrygluserName}
+    Wait Until Element Is Visible    ${lc_shrygluserName}    10
+    input text    ${lc_shrygluserName}    ${shrygluserName}
+
+审核人员管理查询条件点击查询按钮
+    Wait Until Element Is Visible    ${lc_shryglxg}    10
+    click element    ${lc_shryglcx}
+
+审核人员管理勾选员工
+    Wait Until Element Is Not Visible    ${lc_shryglzzjzym}    10
+    click element    ${lc_shryglbtSelectItem}
+
+审核人员管理点击调配
+    Wait Until Element Is Visible    ${lc_shrygltp}    10
+    click element    ${lc_shrygltp}
+
+审核人员管理选择调配后的科室
+    [Arguments]    ${shryglparentOrgNumberTwo}    ${shryglorgNumberTwo}
+    sleep    1
+    Select From List By Label    ${lc_shryglparentOrgNumberTwo}    ${shryglparentOrgNumberTwo}
+    sleep    1
+    Select From List By Label    ${lc_shryglorgNumberTwo}    ${shryglorgNumberTwo}
+
+审核人员管理人员调配确定
+    Wait Until Element Is Visible    ${lc_shryglrytpqd}    10
+    click element    ${lc_shryglrytpqd}
+
+审核人员管理人员调配取消
+    Wait Until Element Is Visible    ${lc_shryglrytpqx}    10
+    click element    ${lc_shryglrytpqx}
+    Wait Until Element Is Not Visible    ${lc_shryglrytpqx}    10
+
+审核人员管理点击批量删除按钮
+    Wait Until Element Is Visible    ${lc_shryglplsc}    10
+    click element    ${lc_shryglplsc}
+    Wait Until Element Is Visible    ${lc_shryglsccgqd}    10
+    click element    ${lc_shryglsccgqd}
+
+审核人员管理点击删除按钮
+    Wait Until Element Is Visible    ${lc_shryglsc}    10
+    click element    ${lc_shryglsc}
+    Wait Until Element Is Visible    ${lc_shryglsccgqd}    10
+    click element    ${lc_shryglsccgqd}
+
+审核人员管理点击修改按钮
+    Wait Until Element Is Not Visible    ${lc_shryglzzjzym}    10
+    click element    ${lc_shryglxg}
+
+审核人员管理状态修改为
+    [Arguments]    ${shryglztxgw}
+    Wait Until Element Is Visible    ${lc_shryglztqy}    10
+    Run Keyword If    '${shryglztxgw}'=='启用'    click element    ${lc_shryglztqy}
+    ...    ELSE IF    '${shryglztxgw}'=='停用'    click element    ${lc_shryglztty}
+    ...    ELSE    Should Be True    ${False}    “状态修改为”输入参数错误
+
+审核人员管理是否参与分单
+    [Arguments]    ${shryglcyfd}
+    Wait Until Element Is Visible    ${lc_shryglcyfdY}    10
+    Run Keyword If    '${shryglcyfd}'=='是'    click element    ${lc_shryglcyfdY}
+    ...    ELSE IF    '${shryglcyfd}'=='否'    click element    ${lc_shryglcyfdN}
+    ...    ELSE    Should Be True    ${False}    “是否参与分单”输入参数错误
+
+审核人员管理状态修改确定
+    Wait Until Element Is Visible    ${lc_shryglztqd}    10
+    click element    ${lc_shryglztqd}
+
+审核人员管理状态修改取消
+    Wait Until Element Is Visible    ${lc_shryglztqx}    10
+    click element    ${lc_shryglztqx}
+    Wait Until Element Is Not Visible    ${lc_shryglztqx}    10
+
+审核人员管理点击人员调配成功确定
+    Wait Until Element Is Visible    ${lc_shrygltpcgqd}    10
+    click element    ${lc_shrygltpcgqd}
+    Wait Until Element Is Not Visible    ${lc_shrygltpcgqd}    10
+    click element    ${lc_shryglrytpqx}
+    Wait Until Element Is Not Visible    ${lc_shryglrytpqx}    10
+
+审核人员管理点击状态修改成功确定
+    Wait Until Element Is Visible    ${lc_shryglszcgqd}    10
+    click element    ${lc_shryglszcgqd}
+    Wait Until Element Is Not Visible    ${lc_shryglszcgqd}    10

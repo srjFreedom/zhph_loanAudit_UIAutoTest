@@ -1,0 +1,40 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         login_data.py
+Variables         login_locator.py
+
+*** Keywords ***
+打开浏览器
+    [Arguments]    ${url}
+    open browser    ${url}    gc
+    maximize browser window
+
+输入用户名
+    [Arguments]    ${loginCode}
+    Wait Until Element Is Visible    ${Locator_loginCode }    10
+    input text    ${Locator_loginCode }    ${loginCode}
+
+输入密码
+    [Arguments]    ${inputPassword}
+    Wait Until Element Is Visible    ${Locator_inputPassword}    10
+    input text    ${Locator_inputPassword}    ${inputPassword}
+
+点击登录
+    Wait Until Element Is Visible    ${Locator_dengLuAnNiu}    10
+    click element    ${Locator_dengLuAnNiu}
+
+关闭浏览器
+    sleep    3
+    close browser
+    sleep    3
+
+ig_登录到
+    [Arguments]    ${url}    ${loginCode}    ${inputPassword}
+    open browser    ${url}    gc
+    maximize browser window
+    Wait Until Element Is Visible    ${Locator_loginCode }    10
+    input text    ${Locator_loginCode }    ${loginCode}
+    Wait Until Element Is Visible    ${Locator_inputPassword}    10
+    input text    ${Locator_inputPassword}    ${inputPassword}
+    Wait Until Element Is Visible    ${Locator_dengLuAnNiu}    10
+    click element    ${Locator_dengLuAnNiu}

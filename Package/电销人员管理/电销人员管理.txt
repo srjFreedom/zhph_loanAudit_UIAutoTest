@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         dxrygl_data.py
+Variables         dxrygl_locator.py
+
+*** Keywords ***
+电销人员管理查询条件输入电销人员编号
+    [Arguments]    ${dxrygltelPeopleNo}
+    Wait Until Element Is Visible    ${lc_dxrygltelPeopleNo}    10
+    input text    ${lc_dxrygltelPeopleNo}    ${dxrygltelPeopleNo}
+
+电销人员管理查询条件输入电销人员姓名
+    [Arguments]    ${dxrygltelPeopleName}
+    Wait Until Element Is Visible    ${lc_dxrygltelPeopleName}    10
+    input text    ${lc_dxrygltelPeopleName}    ${dxrygltelPeopleName}
+
+电销人员管理点击搜索
+    Wait Until Element Is Visible    ${lc_dxryglcaozuo}    10
+    click element    ${lc_dxryglsousuo}
+
+电销人员管理点击切换启停用操作
+    Wait Until Element Is Not Visible    ${lc_dxryglzzjzym}    10
+    click element    ${lc_dxryglcaozuo}

@@ -1,0 +1,48 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         sqxx_data.py
+Variables         sqxx_locator.py
+
+*** Keywords ***
+点击复审附件查看
+    Wait Until Element Is Visible    ${Locator_fsfjck}    10
+    click element    ${Locator_fsfjck}
+
+点击复审申请信息
+    Wait Until Element Is Visible    ${Locator_fssqxx}    10
+    click element    ${Locator_fssqxx}
+
+点击复审第三方征信
+    Wait Until Element Is Visible    ${Locator_fsdsfzx}    10
+    click element    ${Locator_fsdsfzx}
+
+点击复审人行简版征信
+    Wait Until Element Is Visible    ${Locator_fsrhjbzx}    10
+    click element    ${Locator_fsrhjbzx}
+
+点击复审电话核查
+    Wait Until Element Is Visible    ${Locator_fsdhhc}    10
+    click element    ${Locator_fsdhhc}
+
+点击复审反欺诈内匹
+    Wait Until Element Is Visible    ${Locator_fsfqznp}    10
+    click element    ${Locator_fsfqznp}
+
+点击复审审核结论
+    Wait Until Element Is Visible    ${Locator_fsshjl}    10
+    click element    ${Locator_fsshjl}
+
+总部复审查询条件输入合同号
+    [Arguments]    ${fscontractNo}
+    Wait Until Element Is Visible    ${Locator_contractNo}    10
+    input text    ${Locator_contractNo}    ${fscontractNo}
+
+点击复审按钮
+    Wait Until Element Is not Visible    ${Locator_fsLieBiao}    10
+    click element    ${Locator_fuShenAnNiu}
+    Wait Until Element Is Visible    ${Locator_fsframe}    10
+    Select Frame    ${Locator_fsframe}
+
+复审列表点击查询按钮
+    Wait Until Element Is Visible    ${Locator_fuShenAnNiu}    10
+    click element    ${Locator_fschaXun}

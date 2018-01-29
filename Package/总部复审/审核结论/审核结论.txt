@@ -1,0 +1,135 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         shjl_data.py
+Variables         shjl_locator.py
+
+*** Keywords ***
+复审选择是否本地籍单选框
+    [Arguments]    ${fssfbdj}
+    Wait Until Element Is Visible    ${lc_fssfbdjY}    10
+    Run Keyword If    '${fssfbdj}'=='是'    click element    ${lc_fssfbdjY}
+    ...    ELSE IF    '${fssfbdj}'=='否'    click element    ${lc_fssfbdjN}
+    ...    ELSE    Should Be True    ${False}    “是否本地籍”输入参数错误
+
+复审输入第一个月打卡工资流水
+    [Arguments]    ${fsoneSalaryContinual}
+    Wait Until Element Is Visible    ${lc_fsoneSalaryContinual}    10
+    input text    ${lc_fsoneSalaryContinual}    ${fsoneSalaryContinual}
+
+复审输入第二个月打卡工资流水
+    [Arguments]    ${fstwoSalaryContinual}
+    Wait Until Element Is Visible    ${lc_fstwoSalaryContinual}    10
+    input text    ${lc_fstwoSalaryContinual}    ${fstwoSalaryContinual}
+
+复审输入第三个月打卡工资流水
+    [Arguments]    ${fsthreeSalaryContinual}
+    Wait Until Element Is Visible    ${lc_fsthreeSalaryContinual}    10
+    input text    ${lc_fsthreeSalaryContinual}    ${fsthreeSalaryContinual}
+
+复审输入第四个月打卡工资流水
+    [Arguments]    ${fsfourSalaryContinual}
+    Wait Until Element Is Visible    ${lc_fsfourSalaryContinual}    10
+    input text    ${lc_fsfourSalaryContinual}    ${fsfourSalaryContinual}
+
+复审输入第五个月打卡工资流水
+    [Arguments]    ${fsfiveSalaryContinual}
+    Wait Until Element Is Visible    ${lc_fsfiveSalaryContinual}    10
+    input text    ${lc_fsfiveSalaryContinual}    ${fsfiveSalaryContinual}
+
+复审输入第六个月打卡工资流水
+    [Arguments]    ${fssixSalaryContinual}
+    Wait Until Element Is Visible    ${lc_fssixSalaryContinual}    10
+    input text    ${lc_fssixSalaryContinual}    ${fssixSalaryContinual}
+
+复审输入社保缴费基数
+    [Arguments]    ${fsin_socialSecurityBase}
+    Wait Until Element Is Visible    ${lc_fsin_socialSecurityBase}    10
+    input text    ${lc_fsin_socialSecurityBase}    ${fsin_socialSecurityBase}
+
+复审输入公积金缴费基数
+    [Arguments]    ${fsin_accumulationFundBase}
+    Wait Until Element Is Visible    ${lc_fsin_accumulationFundBase}    10
+    input text    ${lc_fsin_accumulationFundBase}    ${fsin_accumulationFundBase}
+
+复审输入近6个月查询记录-本
+    [Arguments]    ${fssixSelfQueryRecord}
+    Wait Until Element Is Visible    ${lc_fssixSelfQueryRecord}    10
+    input text    ${lc_fssixSelfQueryRecord}    ${fssixSelfQueryRecord}
+
+复审输入近3个月查询记录-贷
+    [Arguments]    ${fsthreeLoanQueryRecord}
+    Wait Until Element Is Visible    ${lc_fsthreeLoanQueryRecord}    10
+    input text    ${lc_fsthreeLoanQueryRecord}    ${fsthreeLoanQueryRecord}
+
+复审输入近3个月查询记录-信
+    [Arguments]    ${fsthreeCreditQueryRecord}
+    Wait Until Element Is Visible    ${lc_fsthreeCreditQueryRecord}    10
+    input text    ${lc_fsthreeCreditQueryRecord}    ${fsthreeCreditQueryRecord}
+
+复审输入近3个月查询记录-本
+    [Arguments]    ${fsthreeSelfQueryRecord}
+    Wait Until Element Is Visible    ${lc_fsthreeSelfQueryRecord}    10
+    input text    ${lc_fsthreeSelfQueryRecord}    ${fsthreeSelfQueryRecord}
+
+复审选择是否按揭
+    [Arguments]    ${fssfaj}
+    Wait Until Element Is Visible    ${lc_fssfajY}    10
+    Run Keyword If    '${fssfaj}'=='是'    click element    ${lc_fssfajY}
+    ...    ELSE IF    '${fssfaj}'=='否'    click element    ${lc_fssfajN}
+    ...    ELSE    Should Be True    ${False}    “是否按揭”输入参数错误
+
+输入复审审批意见
+    [Arguments]    ${fsrepeatAuditOpinion}
+    Wait Until Element Is Visible    ${lc_fsrepeatAuditOpinion}    10
+    input text    ${lc_fsrepeatAuditOpinion}    ${fsrepeatAuditOpinion}
+
+选择复审审批结果
+    [Arguments]    ${fsrepeatApprovalStatus}
+    Wait Until Element Is Visible    ${lc_fsrepeatApprovalStatus}    10
+    Select From List By Label    ${lc_fsrepeatApprovalStatus}    ${fsrepeatApprovalStatus}
+
+复审输入批准额度
+    [Arguments]    ${fsgrantAmount}
+    Wait Until Element Is Visible    ${lc_fsgrantAmount}    10
+    input text    ${lc_fsgrantAmount}    ${fsgrantAmount}
+
+复审选择贷款期数
+    [Arguments]    ${fsloanCycle}
+    Wait Until Element Is Visible    ${lc_fsloanCycle}    10
+    Select From List By Label    ${lc_fsloanCycle}    ${fsloanCycle}
+
+复审选择产品类别
+    [Arguments]    ${fsloanProductAdd}
+    Wait Until Element Is Visible    ${lc_fsloanProductAdd}    10
+    Select From List By Label    ${lc_fsloanProductAdd}    ${fsloanProductAdd}
+
+复审选择审核级别
+    [Arguments]    ${fsauditLevel}
+    Wait Until Element Is Visible    ${lc_fsauditLevel}    10
+    Select From List By Label    ${lc_fsauditLevel}    ${fsauditLevel}
+
+复审选择主理由
+    [Arguments]    ${fsrepeatMainExcuse}
+    Wait Until Element Is Visible    ${lc_fsrepeatMainExcuse}    10
+    Select From List By Label    ${lc_fsrepeatMainExcuse}    ${fsrepeatMainExcuse}
+
+复审选择子理由
+    [Arguments]    ${fsrepeatSubReason}
+    Wait Until Element Is Visible    ${lc_fsrepeatSubReason}    10
+    Select From List By Label    ${lc_fsrepeatSubReason}    ${fsrepeatSubReason}
+
+复审点击提交
+    Wait Until Element Is Visible    ${lc_fsbtn_auditBtn}    10
+    Click Element    ${lc_fsbtn_auditBtn}
+
+复审点击退回初审
+    Wait Until Element Is Visible    ${lc_fsthcs}    10
+    Click Element    ${lc_fsthcs}
+
+复审点击暂存
+    Wait Until Element Is Visible    ${lc_fszc}    10
+    Click Element    ${lc_fszc}
+
+复审点击入户调查
+    Wait Until Element Is Visible    ${lc_fsrhdc}    10
+    click element    ${lc_fsrhdc}

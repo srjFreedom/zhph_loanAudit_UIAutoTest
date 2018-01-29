@@ -1,0 +1,40 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         xgzt_locator.py
+Variables         xgzt_data.py
+
+*** Keywords ***
+修改状态输入合同号
+    [Arguments]    ${xgztcontractNo}
+    Wait Until Element Is Visible    ${lc_xgztgetClient}    10
+    input text    ${lc_xgztcontractNo}    ${xgztcontractNo}
+
+修改状态输入借款人
+    [Arguments]    ${xgztclientName}
+    Wait Until Element Is Visible    ${lc_xgztclientName}    10
+    input text    ${lc_xgztclientName}    ${xgztclientName}
+
+修改状态点击查询
+    Wait Until Element Is Visible    ${lc_xgztchaXun}    10
+    click element    ${lc_xgztchaXun}
+
+修改状态点选案件
+    Wait Until Element Is Visible    ${lc_checkboxContractNo}    10
+    click element    ${lc_checkboxContractNo}
+
+修改状态选择回退状态
+    [Arguments]    ${updateActivitiStatus}
+    Wait Until Element Is Visible    ${lc_updateActivitiStatus}    10
+    Select From List By Label    ${lc_updateActivitiStatus}    ${updateActivitiStatus}
+
+修改状态点击执行按钮
+    Wait Until Element Is Visible    ${lc_xgztgetClient}    10
+    click element    ${lc_xgztgetClient}
+
+修改状态点击执行确定按钮
+    Wait Until Element Is Visible    ${lc_xgzthtqd}    10
+    click element    ${lc_xgzthtqd}
+
+修改状态点击执行取消按钮
+    Wait Until Element Is Visible    ${lc_xgzthtqx}    10
+    click element    ${lc_xgzthtqx}

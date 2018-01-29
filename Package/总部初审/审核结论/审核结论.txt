@@ -1,0 +1,131 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         shjl_data.py
+Variables         shjl_locator.py
+
+*** Keywords ***
+初审选择是否本地籍单选框
+    [Arguments]    ${cssfbdj}
+    Wait Until Element Is Visible    ${lc_cssfbdjY}    10
+    Run Keyword If    '${cssfbdj}'=='是'    click element    ${lc_cssfbdjY}
+    ...    ELSE IF    '${cssfbdj}'=='否'    click element    ${lc_cssfbdjN}
+    ...    ELSE    Should Be True    ${False}    “是否本地籍”输入参数错误
+
+初审输入第一个月打卡工资流水
+    [Arguments]    ${csoneSalaryContinual}
+    Wait Until Element Is Visible    ${lc_csoneSalaryContinual}    10
+    input text    ${lc_csoneSalaryContinual}    ${csoneSalaryContinual}
+
+初审输入第二个月打卡工资流水
+    [Arguments]    ${cstwoSalaryContinual}
+    Wait Until Element Is Visible    ${lc_cstwoSalaryContinual}    10
+    input text    ${lc_cstwoSalaryContinual}    ${cstwoSalaryContinual}
+
+初审输入第三个月打卡工资流水
+    [Arguments]    ${csthreeSalaryContinual}
+    Wait Until Element Is Visible    ${lc_csthreeSalaryContinual}    10
+    input text    ${lc_csthreeSalaryContinual}    ${csthreeSalaryContinual}
+
+初审输入第四个月打卡工资流水
+    [Arguments]    ${csfourSalaryContinual}
+    Wait Until Element Is Visible    ${lc_csfourSalaryContinual}    10
+    input text    ${lc_csfourSalaryContinual}    ${csfourSalaryContinual}
+
+初审输入第五个月打卡工资流水
+    [Arguments]    ${csfiveSalaryContinual}
+    Wait Until Element Is Visible    ${lc_csfiveSalaryContinual}    10
+    input text    ${lc_csfiveSalaryContinual}    ${csfiveSalaryContinual}
+
+初审输入第六个月打卡工资流水
+    [Arguments]    ${cssixSalaryContinual}
+    Wait Until Element Is Visible    ${lc_cssixSalaryContinual}    10
+    input text    ${lc_cssixSalaryContinual}    ${cssixSalaryContinual}
+
+初审输入社保缴费基数
+    [Arguments]    ${csin_socialSecurityBase}
+    Wait Until Element Is Visible    ${lc_csin_socialSecurityBase}    10
+    input text    ${lc_csin_socialSecurityBase}    ${csin_socialSecurityBase}
+
+初审输入公积金缴费基数
+    [Arguments]    ${csin_accumulationFundBase}
+    Wait Until Element Is Visible    ${lc_csin_accumulationFundBase}    10
+    input text    ${lc_csin_accumulationFundBase}    ${csin_accumulationFundBase}
+
+初审输入近6个月查询记录-本
+    [Arguments]    ${cssixSelfQueryRecord}
+    Wait Until Element Is Visible    ${lc_cssixSelfQueryRecord}    10
+    input text    ${lc_cssixSelfQueryRecord}    ${cssixSelfQueryRecord}
+
+初审输入近3个月查询记录-贷
+    [Arguments]    ${csthreeLoanQueryRecord}
+    Wait Until Element Is Visible    ${lc_csthreeLoanQueryRecord}    10
+    input text    ${lc_csthreeLoanQueryRecord}    ${csthreeLoanQueryRecord}
+
+初审输入近3个月查询记录-信
+    [Arguments]    ${csthreeCreditQueryRecord}
+    Wait Until Element Is Visible    ${lc_csthreeCreditQueryRecord}    10
+    input text    ${lc_csthreeCreditQueryRecord}    ${csthreeCreditQueryRecord}
+
+初审输入近3个月查询记录-本
+    [Arguments]    ${csthreeSelfQueryRecord}
+    Wait Until Element Is Visible    ${lc_csthreeSelfQueryRecord}    10
+    input text    ${lc_csthreeSelfQueryRecord}    ${csthreeSelfQueryRecord}
+
+初审选择是否按揭
+    [Arguments]    ${cssfaj}
+    Wait Until Element Is Visible    ${lc_cssfajY}    10
+    Run Keyword If    '${cssfaj}'=='是'    click element    ${lc_cssfajY}
+    ...    ELSE IF    '${cssfaj}'=='否'    click element    ${lc_cssfajN}
+    ...    ELSE    Should Be True    ${False}    “是否按揭”输入参数错误
+
+输入初审审批意见
+    [Arguments]    ${csfirstAuditOpinion}
+    Wait Until Element Is Visible    ${lc_csfirstAuditOpinion}    10
+    input text    ${lc_csfirstAuditOpinion}    ${csfirstAuditOpinion}
+
+选择初审审批结果
+    [Arguments]    ${csresultsApproval}
+    Wait Until Element Is Visible    ${lc_csresultsApproval}    10
+    Select From List By Label    ${lc_csresultsApproval}    ${csresultsApproval}
+
+初审输入批准额度
+    [Arguments]    ${csgrantAmount}
+    Wait Until Element Is Visible    ${lc_csgrantAmount}    10
+    input text    ${lc_csgrantAmount}    ${csgrantAmount}
+
+初审选择贷款期数
+    [Arguments]    ${csloanCycle}
+    Wait Until Element Is Visible    ${lc_csloanCycle}    10
+    Select From List By Label    ${lc_csloanCycle}    ${csloanCycle}
+
+初审选择产品类别
+    [Arguments]    ${csloanProductAdd}
+    Wait Until Element Is Visible    ${lc_csloanProductAdd}    10
+    Select From List By Label    ${lc_csloanProductAdd}    ${csloanProductAdd}
+
+初审选择审核级别
+    [Arguments]    ${csauditLevelFirst}
+    Wait Until Element Is Visible    ${lc_csauditLevelFirst}    10
+    Select From List By Label    ${lc_csauditLevelFirst}    ${csauditLevelFirst}
+
+初审选择主理由
+    [Arguments]    ${csmainReason}
+    Wait Until Element Is Visible    ${lc_csmainReason}    10
+    Select From List By Label    ${lc_csmainReason}    ${csmainReason}
+
+初审选择子理由
+    [Arguments]    ${cssubGrounds}
+    Wait Until Element Is Visible    ${lc_cssubGrounds}    10
+    Select From List By Label    ${lc_cssubGrounds}    ${cssubGrounds}
+
+初审点击提交
+    Wait Until Element Is Visible    ${lc_csbtn_auditBtn}    10
+    Click Element    ${lc_csbtn_auditBtn}
+
+初审点击回退补件
+    Wait Until Element Is Visible    ${lc_cshtbj}    10
+    Click Element    ${lc_cshtbj}
+
+初审点击暂存
+    Wait Until Element Is Visible    ${lc_cszc}    10
+    Click Element    ${lc_cszc}

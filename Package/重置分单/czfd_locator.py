@@ -1,0 +1,16 @@
+# -*- coding: utf8 -*-
+
+lc_czfdcontractNo = 'id = contractNo'
+lc_czfdclientName = 'id = clientName'
+lc_czfdidCard = 'id = idCard'
+lc_czfdcx = 'xpath = //*[@id="main-container"]/div[2]/div/div[2]/div/div[1]/div[1]/div[3]/div[3]/div/button'
+lc_czfdxgshr = 'xpath = //*[@id="table"]/tbody/tr[1]/td[18]/button'
+lc_czfdzzjzym = 'xpath = //*[@id="main-container"]/div[2]/div/div[2]/div/div[1]/div[2]/div/div[1]/div[2]/div[2]/div'
+lc_czfdbtSelectItem = 'xpath = //*[@id="table"]/tbody/tr[1]/td[1]/input'
+lc_czfdgetClient = 'id = getClient'
+lc_czfdparentOrgNumberTwoSeelet = 'id = parentOrgNumberTwoSeelet'
+lc_czfdorgNumberTwoSelect = 'id = orgNumberTwoSelect'
+lc_czfduserModelSelect = 'id = userModelSelect'
+lc_czfdrytpqd = 'xpath = //*[@id="allocationAuditUserModel"]/div[1]/div/div[2]/button[1]'
+lc_czfdrytpqx = 'xpath = //*[@id="allocationAuditUserModel"]/div[1]/div/div[2]/button[2]'
+lc_czfdcgqd = 'xpath = /html/body/div[8]/div/div/div[2]/button'
