@@ -1,0 +1,45 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         fgskkgl_data.py
+Variables         fgskkgl_locator.py
+
+*** Keywords ***
+分公司扣款管理-按合同号查询
+    [Arguments]    ${fgskkgl_hth}
+    Wait Until Element Is Visible    ${fgskkgl_hth_xpath}    10    页面超时
+    Input Text    ${fgskkgl_hth_xpath}    ${fgskkgl_hth}
+
+分公司扣款管理-按借款人查询
+    [Arguments]    ${fgskkgl_jkr}
+    Wait Until Element Is Visible    ${fgskkgl_jkr_xpath}    10    页面超时
+    Input Text    ${fgskkgl_jkr_xpath}    ${fgskkgl_jkr}
+
+分公司扣款管理-按分公司查询
+    [Arguments]    ${fgskkgl_orgNumber_chosen}
+    Wait Until Element Is Visible    ${fgskkgl_orgNumber_chosen_xpath1}    10    页面超时
+    Click Element    ${fgskkgl_orgNumber_chosen_xpath1}
+    Wait Until Element Is Visible    ${fgskkgl_orgNumber_chosen_xpath2}    10    页面超时
+    Press Key    ${fgskkgl_orgNumber_chosen_xpath2}    ${fgskkgl_orgNumber_chosen}
+    Press Key    ${fgskkgl_orgNumber_chosen_xpath2}    \\13
+
+分公司扣款管理-是否回盘
+    [Arguments]    ${fgskkgl_rtnStatus}
+    Wait Until Element Is Visible    ${fgskkgl_rtnStatus_xpath}    10    页面超时
+    Select From List By Index    ${fgskkgl_rtnStatus_xpath}    ${fgskkgl_rtnStatus}
+
+分公司扣款管理-主体
+    [Arguments]    ${fgskkgl_mainBody}
+    Wait Until Element Is Visible    ${fgskkgl_mainBody_xpath}    10    页面超时
+    Select From List By Index    ${fgskkgl_mainBody_xpath}    ${fgskkgl_mainBody}
+
+分公司扣款管理-查询
+    Wait Until Element Is Visible    ${fgskkgl_cx_xpath}    10    页面超时
+    Click Button    ${fgskkgl_cx_xpath}
+
+分公司扣款管理-扣款
+    Wait Until Element Is Visible    ${fgskkgl_kk_xpath}    10    页面超时
+    Click Element    ${fgskkgl_kk_xpath}
+
+分公司扣款管理-详细信息
+    Wait Until Element Is Visible    ${fgskkgl_xxxx_xpath}    10    页面超时
+    Click Element    ${fgskkgl_xxxx_xpath}

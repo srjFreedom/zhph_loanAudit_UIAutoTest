@@ -1,0 +1,29 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         dhtxjlcx_fgs_data.py
+Variables         dhtxjlcx_fgs_locator.py
+
+*** Keywords ***
+电话提醒记录查询-分公司-按合同号查询
+    [Arguments]    ${dhtxjlcx_fgs_contractNo}
+    Wait Until Element Is Visible    ${dhtxjlcx_fgs_contractNo_xpath}    10    页面超时
+    Input Text    ${dhtxjlcx_fgs_contractNo_xpath}    ${dhtxjlcx_fgs_contractNo}
+
+电话提醒记录查询-分公司-按借款人查询
+    [Arguments]    ${dhtxjlcx_fgs_clientName}
+    Wait Until Element Is Visible    ${dhtxjlcx_fgs_clientName_xpath}    10    页面超时
+    Input Text    ${dhtxjlcx_fgs_clientName_xpath}    ${dhtxjlcx_fgs_clientName}
+
+电话提醒记录查询-分公司-查询
+    Click Button    ${dhtxjlcx_fgs_cx_xpath}
+
+电话提醒记录查询-分公司-重置
+    Click Button    ${dhtxjlcx_fgs_cz_xpath}
+
+电话提醒记录查询-分公司-明细
+    Wait Until Element Is Visible    ${dhtxjlcx_fgs_mx_xpath}    10    页面超时
+    Click Button    ${dhtxjlcx_fgs_mx_xpath}
+
+电话提醒记录查询-分公司-返回
+    Wait Until Element Is Visible    ${dhtxjlcx_fgs_fh_xpath}    10    页面超时
+    Click Button    ${dhtxjlcx_fgs_fh_xpath}

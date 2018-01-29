@@ -1,0 +1,94 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         ddhtxkh_data.py
+Variables         ddhtxkh_locator.py
+
+*** Keywords ***
+待电话提醒客户-按合同号查询
+    [Arguments]    ${ddhtxkh_contractNo}
+    Wait Until Element Is Visible    ${ddhtxkh_contractNo_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_contractNo_xpath}    ${ddhtxkh_contractNo}
+
+待电话提醒客户-按分公司查询
+    [Arguments]    ${ddhtxkh_orgNumbers_chosen}
+    Wait Until Element Is Visible    ${ddhtxkh_orgNumbers_chosen_xpath1}    10    页面超时
+    Click Element    ${ddhtxkh_orgNumbers_chosen_xpath1}
+    Wait Until Element Is Visible    ${ddhtxkh_orgNumbers_chosen_xpath2}    10    页面超时
+    Press Key    ${ddhtxkh_orgNumbers_chosen_xpath2}    ${ddhtxkh_orgNumbers_chosen}
+    Press Key    ${ddhtxkh_orgNumbers_chosen_xpath2}    \\13
+
+待电话提醒客户-按状态查询
+    [Arguments]    ${ddhtxkh_status_chosen}
+    Wait Until Element Is Visible    ${ddhtxkh_status_chosen_xpath1}    10    页面超时
+    Click Element    ${ddhtxkh_status_chosen_xpath1}
+    Wait Until Element Is Visible    ${ddhtxkh_status_chosen_xpath2}    10    页面超时
+    Press Key    ${ddhtxkh_status_chosen_xpath2}    ${ddhtxkh_status_chosen}
+    Press Key    ${ddhtxkh_status_chosen_xpath2}    \\13
+
+待电话提醒客户-月应还款日开始
+    [Arguments]    ${ddhtxkh_monthPayDateStr}
+    Wait Until Element Is Visible    ${ddhtxkh_monthPayDateStr_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_monthPayDateStr_xpath}    ${ddhtxkh_monthPayDateStr}
+    Click Element    xpath=//*[@id="breadcrumbs"]/ul/li[2]
+
+待电话提醒客户-月应还款日结束
+    [Arguments]    ${ddhtxkh_monthPayDateEnd}
+    Wait Until Element Is Visible    ${ddhtxkh_monthPayDateEnd_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_monthPayDateEnd_xpath}    ${ddhtxkh_monthPayDateEnd}
+    Click Element    xpath=//*[@id="breadcrumbs"]/ul/li[2]
+
+待电话提醒客户-按客服专员查询
+    [Arguments]    ${ddhtxkh_userName}
+    Wait Until Element Is Visible    ${ddhtxkh_userName_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_userName_xpath}    ${ddhtxkh_userName}
+
+待电话提醒客户-借款日期开始
+    [Arguments]    ${ddhtxkh_fullTimeStr}
+    Wait Until Element Is Visible    ${ddhtxkh_fullTimeStr_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_fullTimeStr_xpath}    ${ddhtxkh_fullTimeStr}
+    Click Element    xpath=//*[@id="breadcrumbs"]/ul/li[2]
+
+待电话提醒客户-借款日期结束
+    [Arguments]    ${ddhtxkh_fullTimeEnd}
+    Wait Until Element Is Visible    ${ddhtxkh_fullTimeEnd_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_fullTimeEnd_xpath}    ${ddhtxkh_fullTimeEnd}
+    Click Element    xpath=//*[@id="breadcrumbs"]/ul/li[2]
+
+待电话提醒客户-按借款人查询
+    [Arguments]    ${ddhtxkh_clientName}
+    Wait Until Element Is Visible    ${ddhtxkh_clientName_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_clientName_xpath}    ${ddhtxkh_clientName}
+
+待电话提醒客户-按客户经理查询
+    [Arguments]    ${ddhtxkh_businessName}
+    Wait Until Element Is Visible    ${ddhtxkh_businessName_xpath}    10    页面超时
+    Input Text    ${ddhtxkh_businessName_xpath}    ${ddhtxkh_businessName}
+
+待电话提醒客户-按主体查询
+    [Arguments]    ${ddhtxkh_mainBody_chosen}
+    Wait Until Element Is Visible    ${ddhtxkh_mainBody_chosen_xpath1}    10    页面超时
+    Click Element    ${ddhtxkh_mainBody_chosen_xpath1}
+    Wait Until Element Is Visible    ${ddhtxkh_mainBody_chosen_xpath2}    10    页面超时
+    Press Key    ${ddhtxkh_mainBody_chosen_xpath2}    ${ddhtxkh_mainBody_chosen}
+    Press Key    ${ddhtxkh_mainBody_chosen_xpath2}    \\13
+
+待电话提醒客户-查询
+    Wait Until Element Is Visible    ${ddhtxkh_cx_xpath}    10    页面超时
+    Click Button    ${ddhtxkh_cx_xpath}
+
+待电话提醒客户-重置
+    Wait Until Element Is Visible    ${ddhtxkh_cz_xpath}    10    页面超时
+    Click Button    ${ddhtxkh_cz_xpath}
+
+待电话提醒客户-点击处理
+    Wait Until Element Is Visible    ${ddhtxkh_cl_xpath}    10    页面超时
+    Click Button    ${ddhtxkh_cl_xpath}
+
+待电话提醒客户-处理意见
+    [Arguments]    ${ddhtxkh_opinion}
+    Wait Until Element Is Visible    ${ddhtxkh_opinion_css}    10    页面超时
+    Input Text    ${ddhtxkh_opinion_css}    ${ddhtxkh_opinion}
+
+待电话提醒客户-点击指派分单
+    Wait Until Element Is Visible    ${ddhtxkh_zpfd_xpath}    10    页面超时
+    Click Button    ${ddhtxkh_zpfd_xpath}

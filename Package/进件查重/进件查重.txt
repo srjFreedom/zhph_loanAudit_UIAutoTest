@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         jjcc_data.py
+Variables         jjcc_locator.py
+
+*** Keywords ***
+进件查重-输入姓名
+    [Arguments]    ${jjcc_clientName}
+    Wait Until Element Is Visible    ${jjcc_clientName_xpath}    10    页面超时
+    Input Text    ${jjcc_clientName_xpath}    ${jjcc_clientName}
+
+进件查重-输入身份证号
+    [Arguments]    ${jjcc_idCard}
+    Wait Until Element Is Visible    ${jjcc_idCard_xpath}    10    页面超时
+    Input Text    ${jjcc_idCard_xpath}    ${jjcc_idCard}
+
+进件查重-查询
+    Wait Until Element Is Visible    ${jjcc_cx_xpath}    10    页面超时
+    Click Button    ${jjcc_cx_xpath}
+
+进件查重-确定
+    Wait Until Element Is Visible    ${jjcc_qd_xpath}    10    页面超时
+    Click Button    ${jjcc_qd_xpath}

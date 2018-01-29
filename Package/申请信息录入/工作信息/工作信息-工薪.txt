@@ -1,0 +1,164 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+Library           Selenium2Library
+Variables         gzxx_data.py
+Variables         gzxx_locator.py
+
+*** Keywords ***
+选择工作信息页面
+    sleep    3
+    Select Frame    id=layui-layer-iframe1
+    Wait Until Element Is Visible    ${gzxxym_xpath}    15    页面等待已超过10秒
+    Click Element    ${gzxxym_xpath}
+    sleep    1
+
+工作信息-输入工作单位/企业全称
+    [Arguments]    ${gzxx_companyName}
+    [Documentation]    必传参数： ${companyName}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_companyName_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_companyName_xpath}    ${gzxx_companyName}
+
+工作信息-单位电话-区号
+    [Arguments]    ${gzxx_companyAreaCode}
+    [Documentation]    必传参数： ${companyAreaCode}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_companyAreaCode_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_companyAreaCode_xpath}    ${gzxx_companyAreaCode}
+
+工作信息-单位电话-电话
+    [Arguments]    ${gzxx_companyTels}
+    [Documentation]    必传参数： ${companyTels}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_companyTels_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_companyTels_xpath}    ${gzxx_companyTels}
+
+工作信息-单位电话-分机号
+    [Arguments]    ${gzxx_ompanyTelNumber}
+    [Documentation]    必传参数： ${companyTelNumber}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_companyTelNumber_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_companyTelNumber_xpath}    ${gzxx_companyTelNumber}
+
+工作信息-现单位/经营地址-省
+    [Documentation]    现单位/经营地址-省份是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shengx} \ \ \ ${index1}中的变量${index1}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #单位/经营地址-省
+    ${companysheng}    Catenate    SEPARATOR=    ${gzxx_companyProvince_xpath}    /option    #拼接单位/经营地址-省xpath
+    ${companyshengx}    Catenate    SEPARATOR=    xpath=    ${gzxx_companyProvince_xpath}
+    ${count1}    Get Matching Xpath Count    ${companysheng}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${companyshengx}    10    页面等待已超过10秒
+    Select From List By Index    ${companyshengx}    ${index1}    #选择单位/经营地址-省
+    sleep    1
+
+工作信息-现单位/经营地址-市
+    [Documentation]    现单位/经营地址-市是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shix} \ \ \ ${index2}中的变量${index2}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #单位/经营地址-市
+    ${companyshi}    Catenate    SEPARATOR=    ${gzxx_companyCity_xpath}    /option    #拼接现住地址-市xpath
+    ${companyshix}    Catenate    SEPARATOR=    xpath=    ${gzxx_companyCity_xpath}
+    ${count2}    Get Matching Xpath Count    ${companyshi}
+    ${random2}    Evaluate    random.randint(1,${count2}-1)    random
+    ${index2}    Convert To String    ${random2}
+    Wait Until Element Is Visible    ${companyshix}    10    页面等待已超过10秒
+    Select From List By index    ${companyshix}    ${index2}    #选择现住地址-市
+    sleep    1
+
+工作信息-现单位/经营地址-区
+    [Documentation]    现单位/经营地址-区是随机生成，也可自定义
+    ...
+    ...    在关键字“现单位/经营地址-区随机”中，将Select From List By Index \ \ \ ${qux} \ \ \ ${index3}中的变量${index3}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #单位/经营地址-区
+    ${companyqu}    Catenate    SEPARATOR=    ${gzxx_companyCounty_xpath}    /option    #拼接现住地址-区xpath
+    ${companyqux}    Catenate    SEPARATOR=    xpath=    ${gzxx_companyCounty_xpath}
+    Set Suite Variable    ${companyqux}    ${companyqux}
+    ${count3}    Get Matching Xpath Count    ${companyqu}
+    Set Suite Variable    ${count3}    ${count3}
+    Run Keyword If    ${count3}==1    log    没有区地址
+    ...    ELSE    工作信息-现单位/经营地址-区随机
+    sleep    1
+
+工作信息-现单位/经营地址-区随机
+    ${random3}    Evaluate    random.randint(1,${count3}-1)    random
+    ${index3}    Convert To String    ${random3}
+    Wait Until Element Is Visible    ${companyqux}    10    页面等待已超过10秒
+    Select From List By Index    ${companyqux}    ${index3}    #选择现住地址-区
+
+工作信息-现单位/经营地址-详细
+    [Arguments]    ${gzxx_companyAddr}
+    [Documentation]    必传参数： ${companyAddr}
+    ...
+    ...    在data文件中取值
+    #单位/经营地址-详细地址
+    Wait Until Element Is Visible    ${gzxx_companyAddr_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_companyAddr_xpath}    ${gzxx_companyAddr}
+
+工作信息-选择初次入职时间
+    [Arguments]    ${gzxx_firstHireDate}
+    [Documentation]    必传参数： ${firstHireDate}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_firstHireDate_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_firstHireDate_xpath}    ${gzxx_firstHireDate}
+    Click Element    xpath=//*[@id="workForm"]/table/tbody/tr[1]/td
+
+工作信息-选择职位级别
+    [Documentation]    职位级别为随机取值，也可自定义
+    ...
+    ...    将Select From List By Index ${jibiex} ${index1}中的变量${index1}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #职位级别
+    ${jibie}    Catenate    SEPARATOR=    ${gzxx_companyOccupation_xpath}    /option    #拼接职位级别 xpath
+    ${jibiex}    Catenate    SEPARATOR=    xpath=    ${gzxx_companyOccupation_xpath}
+    ${count1}    Get Matching Xpath Count    ${jibie}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${jibiex}    10    页面等待已超过10秒
+    Select From List By Index    ${jibiex}    ${index1}    #选择职位级别
+
+工作信息-输入月基本薪金/月均营业额
+    [Arguments]    ${gzxx_monthWage}
+    [Documentation]    必传参数： ${monthWage}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_monthWage_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_monthWage_xpath}    ${gzxx_monthWage}
+
+工作信息上一步
+    Wait Until Element Is Visible    ${gzxx_syb_xpath}    10    页面等待已超过10秒
+    Click Button    ${gzxx_syb_xpath}
+
+工作信息暂存
+    Wait Until Element Is Visible    ${gzxx_zc_css}    10    页面等待已超过10秒
+    Click Button    ${gzxx_zc_css}
+
+工作信息暂存确认
+    sleep    1
+    Wait Until Element Is Visible    ${gzxx_zcqr_xpath}    10    页面等待已超过10秒
+    Click Button    ${gzxx_zcqr_xpath}
+
+工作信息下一步
+    Wait Until Element Is Visible    ${gzxx_xyb_xpath}    10    页面等待已超过10秒
+    Click Button    ${gzxx_xyb_xpath}
+    sleep    2
+
+工作信息返回
+    Wait Until Element Is Visible    ${gzxx_fh_xpath}    10    页面等待已超过10秒
+    Click Button    ${gzxx_fh_xpath}

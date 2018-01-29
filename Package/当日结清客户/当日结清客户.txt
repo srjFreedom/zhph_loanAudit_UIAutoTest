@@ -1,0 +1,43 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         drjqkh_data.py
+Variables         drjqkh_locator.py
+
+*** Keywords ***
+当日结清客户-按合同号查询
+    [Arguments]    ${drjqkh_contractNo}
+    Wait Until Element Is Visible    ${drjqkh_contractNo_xpath}    10    页面超时
+    Input Text    ${drjqkh_contractNo_xpath}    ${drjqkh_contractNo}
+
+当日结清客户-按身份证查询
+    [Arguments]    ${drjqkh_idCard}
+    Wait Until Element Is Visible    ${drjqkh_idCard_xpath}    10    页面超时
+    Input Text    ${drjqkh_idCard_xpath}    ${drjqkh_idCard}
+
+当日结清客户-按放款渠道查询
+    [Arguments]    ${drjqkh_payChannel}
+    Wait Until Element Is Visible    ${drjqkh_payChannel_xpath}    10    页面超时
+    Select From List By Index    ${drjqkh_payChannel_xpath}    ${drjqkh_payChannel}
+
+当日结清客户-结清开始日期
+    [Arguments]    ${drjqkh_deductionTimeStart}
+    Wait Until Element Is Visible    ${drjqkh_deductionTimeStart_xpath}    10    页面超时
+    Input Text    ${drjqkh_deductionTimeStart_xpath}    ${drjqkh_deductionTimeStart}
+
+当日结清客户-结清结束日期
+    [Arguments]    ${drjqkh_deductionTimeEnd}
+    Wait Until Element Is Visible    ${drjqkh_deductionTimeEnd_xpath}    10    页面超时
+    Input Text    ${drjqkh_deductionTimeEnd_xpath}    ${drjqkh_deductionTimeEnd}
+
+当日结清客户-按主体查询
+    [Arguments]    ${drjqkh_mainBody}
+    Wait Until Element Is Visible    ${drjqkh_mainBody_xpath}    10    页面超时
+    Select From List By Index    ${drjqkh_mainBody_xpath}    ${drjqkh_mainBody}
+
+当日结清客户-查询
+    Wait Until Element Is Visible    ${drjqkh_cx_xpath}    10    页面超时
+    Click Button    ${drjqkh_cx_xpath}
+
+当日结清客户-结清证明下载
+    Wait Until Element Is Visible    ${drjqkh_jqzmxz_xpath}    10    页面超时
+    Click Element    ${drjqkh_jqzmxz_xpath}

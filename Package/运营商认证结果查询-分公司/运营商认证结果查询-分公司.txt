@@ -1,0 +1,55 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         yysrzjgcx_fgs_data.py
+Variables         yysrzjgcx_fgs_locator.py
+
+*** Keywords ***
+运营商认证结果查询-分公司-按合同号查询
+    [Arguments]    ${yysrzjgcx_fgs_contractNo}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_contractNo_xpath}    10    页面超时
+    Input Text    ${yysrzjgcx_fgs_contractNo_xpath}    ${yysrzjgcx_fgs_contractNo}
+
+运营商认证结果查询-分公司-按借款人查询
+    [Arguments]    ${yysrzjgcx_fgs_clientName}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_clientName_xpath}    10    页面超时
+    Input Text    ${yysrzjgcx_fgs_clientName_xpath}    ${yysrzjgcx_fgs_clientName}
+
+运营商认证结果查询-分公司-按营业部查询
+    [Arguments]    ${yysrzjgcx_fgs_orgNumber_chosen}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_orgNumber_chosen_xpath1}    10    页面超时
+    Click Element    ${yysrzjgcx_fgs_orgNumber_chosen_xpath1}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_orgNumber_chosen_xpath2}    10    页面超时
+    Press Key    ${yysrzjgcx_fgs_orgNumber_chosen_xpath2}    ${yysrzjgcx_fgs_orgNumber_chosen}
+    Press Key    ${yysrzjgcx_fgs_orgNumber_chosen_xpath2}    \\13
+
+运营商认证结果查询-分公司-按状态查询
+    [Arguments]    ${yysrzjgcx_fgs_status_chosen}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_status_chosen_xpath1}    10    页面超时
+    Click Element    ${yysrzjgcx_fgs_status_chosen_xpath1}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_status_chosen_xpath2}    10    页面超时
+    Press Key    ${yysrzjgcx_fgs_status_chosen_xpath2}    ${yysrzjgcx_fgs_status_chosen}
+    Press Key    ${yysrzjgcx_fgs_status_chosen_xpath2}    \\13
+
+运营商认证结果查询-分公司-认证时间开始
+    [Arguments]    ${yysrzjgcx_fgs_AuthenticationDateStr}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_AuthenticationDateStr_xpath}    10    页面超时
+    Input Text    ${yysrzjgcx_fgs_AuthenticationDateStr_xpath}    ${yysrzjgcx_fgs_AuthenticationDateStr}
+
+运营商认证结果查询-分公司-认证时间结束
+    [Arguments]    ${yysrzjgcx_fgs_AuthenticationDateEnd}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_AuthenticationDateEnd_xpath}    10    页面超时
+    Input Text    ${yysrzjgcx_fgs_AuthenticationDateEnd_xpath}    ${yysrzjgcx_fgs_AuthenticationDateEnd}
+
+运营商认证结果查询-分公司-按业务经理查询
+    [Arguments]    ${yysrzjgcx_fgs_businessName}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_businessName_xpath}    10    页面超时
+    Input Text    ${yysrzjgcx_fgs_businessName_xpath}    ${yysrzjgcx_fgs_businessName}
+
+运营商认证结果查询-分公司-按客服查询
+    [Arguments]    ${yysrzjgcx_fgs_receptionistName}
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_receptionistName_xpath}    10    页面超时
+    Input Text    ${yysrzjgcx_fgs_receptionistName_xpath}    ${yysrzjgcx_fgs_receptionistName}
+
+运营商认证结果查询-分公司-查询
+    Wait Until Element Is Visible    ${yysrzjgcx_fgs_cx_xpath}    10    页面超时
+    Click Button    ${yysrzjgcx_fgs_cx_xpath}

@@ -1,0 +1,157 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+Library           Selenium2Library
+Library           random
+Variables         grxx_locator.py
+Variables         grxx_data.py
+
+*** Keywords ***
+选择个人信息页面
+    sleep    3
+    Select Frame    id=layui-layer-iframe1
+    Wait Until Element Is Visible    ${grxxym_xpath}    15    页面等待已超过10秒
+    Click Element    ${grxxym_xpath}
+    sleep    1
+
+个人信息-选择民族
+    [Documentation]    民族为随机选择，也可自定义选择
+    ...
+    ...    将Select From List By Index ${minzux} ${index1}中的变量${index1}，替换为自定义值既可
+    ...
+    ...    index从0开始，“请选择”为0，以此类推
+    #民族
+    sleep    1
+    ${minzu}    Catenate    SEPARATOR=    ${grxx_clientNation_xpath}    /option    #拼接民族xpath
+    ${minzux}    Catenate    SEPARATOR=    xpath=    ${grxx_clientNation_xpath}
+    ${count1}    Get Matching Xpath Count    ${minzu}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${minzux}    10    页面等待已超过10秒
+    Select From List By Index    ${minzux}    ${index1}    #选择民族
+    sleep    1
+
+个人信息-选择学历
+    [Documentation]    学历为随机选择，也可自定义选择
+    ...
+    ...    将Select From List By Index ${xuelix} ${index1}中的变量${index1}，替换为自定义值既可
+    ...
+    ...    index从0开始，“请选择”为0，以此类推
+    #学历
+    sleep    1
+    ${xueli}    Catenate    SEPARATOR=    ${grxx_educationType_xpath}    /option    #拼接学历xpath
+    ${xuelix}    Catenate    SEPARATOR=    xpath=    ${grxx_educationType_xpath}
+    ${count1}    Get Matching Xpath Count    ${xueli}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${xuelix}    10    页面等待已超过10秒
+    Select From List By Index    ${xuelix}    ${index1}    #选择学历
+    sleep    1
+
+个人信息-现住地址-省
+    [Documentation]    现住地址-省份是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shengx} \ \ \ ${index1}中的变量${index1}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #现住地址-省
+    ${nowsheng}    Catenate    SEPARATOR=    ${grxx_nowProvince_xpath}    /option    #拼接现住地址-省xpath
+    ${nowshengx}    Catenate    SEPARATOR=    xpath=    ${grxx_nowProvince_xpath}
+    ${count1}    Get Matching Xpath Count    ${nowsheng}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${nowshengx}    10    页面等待已超过10秒
+    Select From List By Index    ${nowshengx}    ${index1}    #选择现住地址-省
+    sleep    1
+
+个人信息-现住地址-市
+    [Documentation]    现住地址-市是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shix} \ \ \ ${index2}中的变量${index2}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #现住地址-市
+    ${nowshi}    Catenate    SEPARATOR=    ${grxx_nowCity_xpath}    /option    #拼接现住地址-市xpath
+    ${nowshix}    Catenate    SEPARATOR=    xpath=    ${grxx_nowCity_xpath}
+    ${count2}    Get Matching Xpath Count    ${nowshi}
+    ${random2}    Evaluate    random.randint(1,${count2}-1)    random
+    ${index2}    Convert To String    ${random2}
+    Wait Until Element Is Visible    ${nowshix}    10    页面等待已超过10秒
+    Select From List By index    ${nowshix}    ${index2}    #选择现住地址-市
+    sleep    1
+
+个人信息-现住地址-区
+    [Documentation]    现住地址-区是随机生成，也可自定义
+    ...
+    ...    在关键字“现住地址-区随机”中，将Select From List By Index \ \ \ ${qux} \ \ \ ${index3}中的变量${index3}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #现住地址-区
+    ${nowqu}    Catenate    SEPARATOR=    ${grxx_nowCountry_xpath}    /option    #拼接现住地址-区xpath
+    ${nowqux}    Catenate    SEPARATOR=    xpath=    ${grxx_nowCountry_xpath}
+    Set Suite Variable    ${nowqux}    ${nowqux}
+    ${count3}    Get Matching Xpath Count    ${nowqu}
+    Set Suite Variable    ${count3}    ${count3}
+    Run Keyword If    ${count3}==1    log    没有区地址
+    ...    ELSE    个人信息-现住地址-区随机
+    sleep    1
+
+个人信息-现住地址-区随机
+    ${random3}    Evaluate    random.randint(1,${count3}-1)    random
+    ${index3}    Convert To String    ${random3}
+    Wait Until Element Is Visible    ${nowqux}    10    页面等待已超过10秒
+    Select From List By Index    ${nowqux}    ${index3}    #选择现住地址-区
+    sleep    1
+
+个人信息-现住地址-详细
+    [Arguments]    ${grxx_nowAddr}
+    [Documentation]    必传参数： ${nowAddr}
+    ...
+    ...    在data文件中取值
+    #现住地址-详细地址
+    Wait Until Element Is Visible    ${grxx_nowAddr_xpath}    10    页面等待已超过10秒
+    Input Text    ${grxx_nowAddr_xpath}    ${grxx_nowAddr}    #填写现住地址-详细地址
+
+个人信息-选择同户籍地址
+    Wait Until Element Is Visible    ${grxx_nowCityCheckBox_xpath}    10    页面等待已超过10秒
+    Click Element    ${grxx_nowCityCheckBox_xpath}
+    sleep    2
+
+个人信息-选择婚姻状况
+    [Arguments]    ${grxx_marrySituation}
+    [Documentation]    必传参数： ${marrySituation}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${grxx_marrySituation_xpath}    10    页面等待已超过10秒
+    Select From List By Index    ${grxx_marrySituation_xpath}    ${grxx_marrySituation}
+
+个人信息-输入电子邮箱
+    [Arguments]    ${grxx_email}
+    [Documentation]    必传参数： ${email}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${grxx_email_xpath}    10    页面等待已超过10秒
+    Input Text    ${grxx_email_xpath}    ${grxx_email}
+
+个人信息上一步
+    Wait Until Element Is Visible    ${grxx_syb_xpath}    10    页面等待已超过10秒
+    press key    ${grxx_syb_xpath}    \\13
+
+个人信息暂存
+    Wait Until Element Is Visible    ${grxx_zc_xpath}    10    页面等待已超过10秒
+    press key    ${grxx_zc_xpath}    \\13
+
+个人信息暂存确认
+    sleep    1
+    Wait Until Element Is Visible    ${grxx_zcqr_xpath}    10    页面等待已超过10秒
+    Press Key    ${grxx_zcqr_xpath}    \\13
+
+个人信息下一步
+    Wait Until Element Is Visible    ${grxx_xyb_xpath}    10    页面等待已超过10秒
+    press key    ${grxx_xyb_xpath}    \\13
+    sleep    2
+
+个人信息返回
+    Wait Until Element Is Visible    ${grxx_fh_xpath}    10    页面等待已超过10秒
+    press key    ${grxx_fh_xpath}    \\13

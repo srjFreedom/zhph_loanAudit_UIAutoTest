@@ -1,0 +1,16 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         ywjdcx_data.py
+Variables         ywjdcx_locator.py
+
+*** Keywords ***
+业务进度查询-输入借款人
+    [Arguments]    ${ywjdcx_clientName}
+    Input Text    ${ywjdcx_jkr_xpath}    ${ywjdcx_clientName}
+
+业务进度查询-输入身份证号
+    [Arguments]    ${ywjdcx_idCard}
+    Input Text    ${ywjdcx_sfzh_xpath}    ${ywjdcx_idCard}
+
+业务进度查询-查询
+    Click Button    ${ywjdcx_cx_css}

@@ -1,0 +1,291 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         rhdc_data.py
+Variables         rhdc_locator.py
+
+*** Keywords ***
+入户调查-按合同号查询
+    [Arguments]    ${rhdc_contractNo}
+    Wait Until Element Is Enabled    ${rhdc_hthcx_xpath}    10    页面超时
+    Input Text    ${rhdc_hthcx_xpath}    ${rhdc_contractNo}
+
+入户调查-按借款人查询
+    [Arguments]    ${rhdc_clientName}
+    Wait Until Element Is Enabled    ${rhdc_jkrcx_xpath}    10    页面超时
+    Input Text    ${rhdc_jkrcx_xpath}    ${rhdc_clientName}
+
+入户调查-按分公司查询
+    [Arguments]    ${rhdc_company_chosen}
+    Wait Until Element Is Enabled    ${rhdc_fgscx_xpath1}    10    页面超时
+    Click Element    ${rhdc_fgscx_xpath1}
+    sleep    1
+    press key    ${rhdc_fgscx_xpath2}    ${rhdc_company_chosen}
+    sleep    1
+    Press Key    ${rhdc_fgscx_xpath2}    \\13
+
+入户调查-查询
+    Click Button    ${rhdc_cx_css}
+    sleep    3
+
+点击入户调查
+    Execute Javascript    ${rhdc_rhdc_js}
+
+入户调查-居住地址-省
+    [Documentation]    现住地址-省份是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shengx} \ \ \ ${index1}中的变量${index1}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #居住地址-省
+    ${housesheng}    Catenate    SEPARATOR=    ${rhdc_houseProvince_xpath}    /option    #拼接居住地址-省xpath
+    ${houseshengx}    Catenate    SEPARATOR=    xpath=    ${rhdc_houseProvince_xpath}
+    ${count1}    Get Matching Xpath Count    ${housesheng}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Enabled    ${houseshengx}    10    页面等待已超过10秒
+    Select From List By Index    ${houseshengx}    ${index1}    #选择居住地址-省
+    sleep    1
+
+入户调查-居住地址-市
+    [Documentation]    现住地址-市是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shix} \ \ \ ${index2}中的变量${index2}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #居住地址-市
+    ${houseshi}    Catenate    SEPARATOR=    ${rhdc_houseCity_xpath}    /option    #拼接居住地址-市xpath
+    ${houseshix}    Catenate    SEPARATOR=    xpath=    ${rhdc_houseCity_xpath}
+    ${count2}    Get Matching Xpath Count    ${houseshi}
+    ${random2}    Evaluate    random.randint(1,${count2}-1)    random
+    ${index2}    Convert To String    ${random2}
+    Wait Until Element Is Enabled    ${houseshix}    10    页面等待已超过10秒
+    Select From List By index    ${houseshix}    ${index2}    #选择居住地址-市
+    sleep    1
+
+入户调查-居住地址-区
+    [Documentation]    现住地址-区是随机生成，也可自定义
+    ...
+    ...    在关键字“现住地址-区随机”中，将Select From List By Index \ \ \ ${qux} \ \ \ ${index3}中的变量${index3}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #居住地址-区
+    ${housequ}    Catenate    SEPARATOR=    ${rhdc_houseConty_xpath}    /option    #拼接居住地址-区xpath
+    ${housequx}    Catenate    SEPARATOR=    xpath=    ${rhdc_houseConty_xpath}
+    Set Suite Variable    ${housequx}    ${housequx}
+    ${count3}    Get Matching Xpath Count    ${housequ}
+    Set Suite Variable    ${count3}    ${count3}
+    Run Keyword If    ${count3}==1    log    没有区地址
+    ...    ELSE    入户调查-居住地址-区随机
+    sleep    1
+
+入户调查-居住地址-区随机
+    ${random3}    Evaluate    random.randint(1,${count3}-1)    random
+    ${index3}    Convert To String    ${random3}
+    Wait Until Element Is Enabled    ${housequx}    10    页面等待已超过10秒
+    Select From List By Index    ${housequx}    ${index3}    #选择居住地址-区
+    sleep    1
+
+入户调查-居住地址-详细
+    [Arguments]    ${rhdc_houseAddress}
+    [Documentation]    必传参数： ${nowAddr}
+    ...
+    ...    在data文件中取值
+    #居住地址-详细地址
+    Wait Until Element Is Enabled    ${rhdc_houseAddress_xpath}    10    页面等待已超过10秒
+    Input Text    ${rhdc_houseAddress_xpath}    ${rhdc_houseAddress}    #填写居住地址-详细地址
+
+入户调查-选择房屋性质
+    #房屋性质
+    ${fwxz}    Catenate    SEPARATOR=    ${rhdc_houseNature_xpath}    /option    #房屋性质xpath
+    ${fwxzx}    Catenate    SEPARATOR=    xpath=    ${rhdc_houseNature_xpath}
+    ${count1}    Get Matching Xpath Count    ${fwxz}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Select From List By Index    ${fwxzx}    ${index1}    #选择房屋性质
+    sleep    1
+
+入户调查-输入房屋面积
+    [Arguments]    ${rhdc_houseArea}
+    Input Text    ${rhdc_houseArea_xpath}    ${rhdc_houseArea}
+
+入户调查-选择装修情况
+    #装修情况
+    ${zxqk}    Catenate    SEPARATOR=    ${rhdc_houseRenovation_xpath}    /option    #装修情况xpath
+    ${zxqkx}    Catenate    SEPARATOR=    xpath=    ${rhdc_houseRenovation_xpath}
+    ${count1}    Get Matching Xpath Count    ${zxqk}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Select From List By Index    ${zxqkx}    ${index1}    #选择装修情况
+    sleep    1
+
+入户调查-输入同住人数
+    [Arguments]    ${rhdc_housePersonNumber}
+    Input Text    ${rhdc_housePersonNumber_xpath}    ${rhdc_housePersonNumber}
+
+是否被允许进入室内
+    [Arguments]    ${rhdc_houseEnter}
+    ${houseEnterx}    Catenate    SEPARATOR=    ${rhdc_houseEnter_xpath}    ${rhdc_houseEnter}
+    Click Element    ${houseEnterx}
+
+是否接触到其他人(亲属、邻居、同事)
+    [Arguments]    ${rhdc_houseContactPerson}
+    ${houseContactPersonx}    Catenate    SEPARATOR=    ${rhdc_houseContactPerson_xpath}    ${rhdc_houseContactPerson}
+    Click Element    ${houseContactPersonx}
+
+发现申请人有不良嗜好(赌博、吸毒等)
+    [Arguments]    ${rhdc_houseHabit}
+    ${houseHabitx}    Catenate    SEPARATOR=    ${rhdc_houseHabit_xpath}    ${rhdc_houseHabit}
+    Click Element    ${houseHabitx}
+
+是否发现申请人有债务纠纷或被追债
+    [Arguments]    ${rhdc_houseDebt}
+    ${houseDebtx}    Catenate    SEPARATOR=    ${rhdc_houseDebt_xpath}    ${rhdc_houseDebt}
+    Click Element    ${houseDebtx}
+
+是否发现申请人有直系亲属处于重病就医中
+    [Arguments]    ${rhdc_houseIll}
+    ${houseIllx}    Catenate    SEPARATOR=    ${rhdc_houseIll_xpath}    ${rhdc_houseIll}
+    Click Element    ${houseIllx}
+
+阳台是否挂有换洗衣物
+    [Arguments]    ${rhdc_houseDress}
+    ${houseDressx}    Catenate    SEPARATOR=    ${rhdc_houseDress_xpath}    ${rhdc_houseDress}
+    Click Element    ${houseDressx}
+
+厨房是否正常使用中
+    [Arguments]    ${rhdc_houseKitchen}
+    ${houseKitchenx}    Catenate    SEPARATOR=    ${rhdc_houseKitchen_xpath}    ${rhdc_houseKitchen}
+    Click Element    ${houseKitchenx}
+
+桌子、茶几上是否有日用品
+    [Arguments]    ${rhdc_houseSupplies}
+    ${houseSuppliesx}    Catenate    SEPARATOR=    ${rhdc_houseSupplies_xpath}    ${rhdc_houseSupplies}
+    Click Element    ${houseSuppliesx}
+
+卫生间有无日常洗漱用品
+    [Arguments]    ${rhdc_bathroom}
+    ${bathroomx}    Catenate    SEPARATOR=    ${rhdc_bathroom_xpath}    ${rhdc_bathroom}
+    Click Element    ${bathroomx}
+
+家中是否灰尘较多,无人居住痕迹较重
+    [Arguments]    ${rhdc_houseDust}
+    ${houseDustx}    Catenate    SEPARATOR=    ${rhdc_houseDust_xpath}    ${rhdc_houseDust}
+    Click Element    ${houseDustx}
+
+入户调查-输入单位名称
+    [Arguments]    ${rhdc_companyName}
+    Input Text    ${rhdc_companyName_xpath}    ${rhdc_companyName}
+
+入户调查-选择单位性质
+    #单位性质
+    ${dwxz}    Catenate    SEPARATOR=    ${rhdc_companyNature_xpath}    /option    #单位性质xpath
+    ${dwxzx}    Catenate    SEPARATOR=    xpath=    ${rhdc_companyNature_xpath}
+    ${count1}    Get Matching Xpath Count    ${dwxz}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Select From List By Index    ${dwxzx}    ${index1}    #选择单位性质
+    sleep    1
+
+入户调查-输入单位地址
+    [Arguments]    ${rhdc_companyAddress}
+    Input Text    ${rhdc_companyAddress_xpath}    ${rhdc_companyAddress}
+
+入户调查-输入担任职务
+    [Arguments]    ${rhdc_companyPosition}
+    Input Text    ${rhdc_companyPosition_xpath}    ${rhdc_companyPosition}
+
+入户调查-输入场地租金
+    [Arguments]    ${rhdc_yardRent}
+    Input Text    ${rhdc_yardRent_xpath}    ${rhdc_yardRent}
+
+入户调查-输入经营年数
+    [Arguments]    ${rhdc_operationYear}
+    Input Text    ${rhdc_operationYear_xpath}    ${rhdc_operationYear}
+
+入户调查-输入场地性质
+    [Arguments]    ${rhdc_yardNature}
+    Input Text    ${rhdc_yardNature_xpath}    ${rhdc_yardNature}
+
+入户调查-输入场地面积
+    [Arguments]    ${rhdc_yardArea}
+    Input Text    ${rhdc_yardArea_xpath}    ${rhdc_yardArea}
+
+是否允许进入办公场所
+    [Arguments]    ${rhdc_yardEnter}
+    ${yardEnterx}    Catenate    SEPARATOR=    ${rhdc_yardEnter_xpath}    ${rhdc_yardEnter}
+    Click Element    ${yardEnterx}
+
+是否接触到其他人(同事、下属、上司)
+    [Arguments]    ${rhdc_yardContactPerson}
+    ${yardContactPersonx}    Catenate    SEPARATOR=    ${rhdc_yardContactPerson_xpath}    ${rhdc_yardContactPerson}
+    Click Element    ${yardContactPersonx}
+
+是否有独立办公室、工位
+    [Arguments]    ${rhdc_yardAlonePlace}
+    ${yardAlonePlacex}    Catenate    SEPARATOR=    ${rhdc_yardAlonePlace_xpath}    ${rhdc_yardAlonePlace}
+    Click Element    ${yardAlonePlacex}
+
+是否发现企业申请人有债务纠纷或被追债
+    [Arguments]    ${rhdc_yardDebt}
+    ${yardDebtx}    Catenate    SEPARATOR=    ${rhdc_yardDebt_xpath}    ${rhdc_yardDebt}
+    Click Element    ${yardDebtx}
+
+同事对申请人贷款是否知晓
+    [Arguments]    ${rhdc_yardKnow}
+    ${yardKnowx}    Catenate    SEPARATOR=    ${rhdc_yardKnow_xpath}    ${rhdc_yardKnow}
+    Click Element    ${yardKnowx}
+
+是否有库存
+    [Arguments]    ${rhdc_yardStock}
+    ${yardStockx}    Catenate    SEPARATOR=    ${rhdc_yardStock_xpath}    ${rhdc_yardStock}
+    Click Element    ${yardStockx}
+
+入户调查-选择外访人
+    [Arguments]    ${rhdc_businessName_chosen}
+    Comment    click_object    ${CURDIR}\\..\\..\\IMG\\businessName_chosen1.jpg    5    0.6
+    Comment    Click Object    ${CURDIR}\\..\\..\\IMG\\businessName_chosen2.jpg    5    0.6
+    Comment    type_at_object    ${CURDIR}\\..\\..\\IMG\\businessName_chosen2.jpg    ${rhdc_businessName_chosen}    5    0.6
+    Comment    Click Object    ${CURDIR}\\..\\..\\IMG\\businessName_chosen3.jpg    5    0.6
+    Click Element    ${rhdc_wfr_xpath1}
+    sleep    1
+    press key    ${rhdc_wfr_xpath2}    ${rhdc_businessName_chosen}
+    sleep    1
+    Press Key    ${rhdc_wfr_xpath2}    \\13
+
+入户调查-输入外访日期
+    [Arguments]    ${rhdc_visitDate}
+    Input Text    ${rhdc_visitDate_xpath}    ${rhdc_visitDate}
+    Click Element    xpath=//*[@id="verifyForm"]/table/tbody/tr[6]/td
+
+入户调查-输入外访意见
+    [Arguments]    ${rhdc_opinion}
+    Input Text    ${rhdc_opinion_xapth}    ${rhdc_opinion}
+
+入户调查下一步
+    Click Button    ${rhdc_wfb_xyb_xpath}
+
+入户调查返回
+    Click Button    ${rhdc_wfb_fh_xpath}
+
+入户调查-选择外访表附件
+    [Arguments]    ${rhdc_wfphotos}
+    #外访表
+    Wait Until Element Is Enabled    ${rhdc_xzwfb_xpath}    10    页面超时
+    Choose File    ${rhdc_xzwfb_xpath}    ${rhdc_wfphotos}
+    sleep    3
+
+入户调查-上传外访表附件
+    #上传外访表
+    Click Button    ${rhdc_scwfb_xpath}
+    sleep    3
+
+入户调查附件确认上传
+    Wait Until Element Is Enabled    ${rhdc_fjqrsc_css}    10    页面超时
+    Click Button    ${rhdc_fjqrsc_css}
+
+入户调查提交
+    Execute Javascript    ${rhdc_tj_js}
+
+入户调查提交确认
+    Wait Until Element Is Visible    ${rhdc_tcqr_css}    10    页面超时
+    Click Button    ${rhdc_tcqr_css}

@@ -1,0 +1,156 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+Library           Selenium2Library
+Variables         jkyx_data.py
+Variables         jkyx_locator.py
+
+*** Keywords ***
+申请信息录入-按合同号查询
+    [Arguments]    ${sqxxlr_contractNo}
+    Wait Until Element Is Visible    ${sqxxlr_hthcx_xpath}    10    页面等待已超过10秒
+    Input Text    ${sqxxlr_hthcx_xpath}    ${sqxxlr_contractNo}
+
+申请信息录入-按借款人查询
+    [Arguments]    ${sqxxlr_clientName}
+    Wait Until Element Is Visible    ${sqxxlr_jkrcx_xpath}    10    页面等待已超过10秒
+    Input Text    ${sqxxlr_jkrcx_xpath}    ${sqxxlr_clientName}
+
+申请信息录入-按分公司查询
+    [Arguments]    ${sqxxlr_orgNumber_chosen}
+    Wait Until Element Is Visible    ${sqxxlr_fgscx_xpath1}    10    页面超时
+    Click Element    ${sqxxlr_fgscx_xpath1}
+    sleep    1
+    press key    ${sqxxlr_fgscx_xpath2}    ${sqxxlr_orgNumber_chosen}
+    sleep    1
+    Press Key    ${sqxxlr_fgscx_xpath2}    \\13
+
+申请信息录入-搜索
+    Wait Until Element Is Visible    ${sqxxlr_ss_css}    10    页面等待已超过10秒
+    Click Button    ${sqxxlr_ss_css}
+
+申请信息录入-刷新
+    Wait Until Element Is Visible    ${sqxxlr_sx_css}    10    页面等待已超过10秒
+    Click Button    ${sqxxlr_sx_css}
+
+申请信息录入-重置
+    Wait Until Element Is Visible    ${sqxxlr_cz_css}    10    页面等待已超过10秒
+    Click Button    ${sqxxlr_cz_css}
+
+点击申请信息录入
+    Wait Until Element Is Visible    ${sqxxlr_sqxxlr_xpath}    10    页面等待已超过10秒
+    Click Button    ${sqxxlr_sqxxlr_xpath}
+
+申请信息录入-客户放弃
+    Wait Until Element Is Visible    ${sqxxlr_khfq_xpath}    10    页面等待已超过10秒
+    Click Button    ${sqxxlr_khfq_xpath}
+    sleep    1
+
+申请信息录入-确认放弃
+    Execute Javascript    ${sqxxlr_khfq_qr_js}    #提交
+    sleep    3
+    Click Button    xpath=/html/body/div[8]/div/div/div[2]/button    #确认
+
+申请信息录入-拒绝
+    Wait Until Element Is Visible    ${sqxxlr_jj_xpath}    10    页面等待已超过10秒
+    Click Button    ${sqxxlr_jj_xpath}
+
+申请信息录入-选择拒绝理由
+    [Arguments]    ${sqxxlr_jjly}
+    Wait Until Element Is Visible    xpath=//*[@id="applicationRefuse"]/div[${sqxxlr_jjly}]/label/input    10    页面超时
+    Select Checkbox    xpath=//*[@id="applicationRefuse"]/div[${sqxxlr_jjly}]/label/input
+
+申请信息录入-选择拒绝理由其他
+    [Arguments]    ${sqxxlr_jjlyqt}
+    Wait Until Element Is Visible    xpath=//*[@id="allRefuse"]/div/div[3]/label/input    10    页面超时
+    Select Checkbox    xpath=//*[@id="allRefuse"]/div/div[3]/label/input
+    Input Text    ${sqxxlr_jjlyqt_xpath}    ${sqxxlr_jjlyqt}
+
+申请信息录入-拒绝提交
+    Execute Javascript    ${sqxxlr_jj_tj_js}
+    sleep    3
+    Click Button    xpath=/html/body/div[8]/div/div/div[2]/button
+
+选择借款意向页面
+    sleep    3
+    Select Frame    id=layui-layer-iframe1
+    Wait Until Element Is Visible    ${jkyxym_xpath}    15    页面超时
+    Click Element    ${jkyxym_xpath}
+    sleep    1
+
+借款意向-选择客户类型
+    [Arguments]    ${jkyx_clientType}
+    [Documentation]    必传参数： ${applyMoney}
+    ...
+    ...    在data文件中取值
+    ...
+    ...    *注意：不同客户类型，必填会发送变化
+    Select From List By Index    ${jkyx_clientType_xpath}    ${jkyx_clientType}    #不同类型需注意必填项的变化
+
+借款意向-选择业务员姓名
+    [Arguments]    ${jkyx_businessName}
+    Click Element    ${jkyx_businessName_xpath1}
+    sleep    1
+    press key    ${jkyx_businessName_xpath2}    ${jkyx_businessName}
+    sleep    1
+    Press Key    ${jkyx_businessName_xpath2}    \\13
+
+借款意向-输入申请金额
+    [Arguments]    ${jkyx_applyMoney}
+    [Documentation]    必传参数： ${applyMoney}
+    ...
+    ...    在data文件中取值
+    Input Text    ${jkyx_applyMoney_xpath}    ${jkyx_applyMoney}
+
+借款意向-选择借款用途
+    [Documentation]    借款用途是随机选择    #选择借款用途
+    ...    如果需要特定选择：
+    ...
+    ...    1.修改“选择借款用途”关键字的参数信息
+    ...
+    ...    2.Select From List By Index ${purposex} ${index1}
+    ...
+    ...    将此句中的${index1}换为自己所想选择的值
+    ...
+    ...    3.index值从0开始计算，“请选择”是0，以此类推
+    ${purpose}    Catenate    SEPARATOR=    ${jkyx_loanPurpose_xpath}    /option    #拼接借款用途xpath
+    ${purposex}    Catenate    SEPARATOR=    xpath=    ${jkyx_loanPurpose_xpath}
+    ${count1}    Get Matching Xpath Count    ${purpose}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Select From List By Index    ${purposex}    ${index1}    #选择借款用途
+    sleep    1
+
+借款意向-选择产品类型
+    [Arguments]    ${jkyx_loanProduct}
+    [Documentation]    必传参数： ${loanProduct}
+    ...
+    ...    在data文件中取值
+    ...
+    ...    用index的方式取值，“请选择”为0，以此类推
+    Select From List By Index    ${jkyx_loanProduct_xpath}    ${jkyx_loanProduct}    #注意不同产品类型的影响
+
+借款意向-选择借款期数
+    [Arguments]    ${jkyx_loanTerms}
+    [Documentation]    必传参数： ${loanTerms}
+    ...
+    ...    在data文件中取值
+    Select From List By Index    ${jkyx_loanTerms_xpath}    ${jkyx_loanTerms}    #注意产品所对应的期数
+
+借款意向暂存
+    Click Button    ${jkyx_zc_xpath}
+
+借款意向暂存确认
+    sleep    1
+    Wait Until Element Is Visible    ${jkyx_zcqr_xpath}    10    页面超时
+    Press Key    ${jkyx_zcqr_xpath}    \\13
+
+借款意向下一步
+    Wait Until Element Is Visible    ${jkyx_xyb_xpath}    10    页面等待已超过10秒
+    Click Button    ${jkyx_xyb_xpath}
+    sleep    2
+
+借款意向返回
+    Wait Until Element Is Visible    ${jkyx_fh_xpath}    10    页面等待已超过10秒
+    Click Button    ${jkyx_fh_xpath}

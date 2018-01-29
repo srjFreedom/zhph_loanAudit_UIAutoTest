@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         sqjcx_fgs_data.py
+Variables         sqjcx_fgs_locator.py
+
+*** Keywords ***
+申请件查询-分公司-按合同号查询
+    [Arguments]    ${sqjcx_fgs_contractNo}
+    Wait Until Element Is Visible    ${sqjcx_fgs_contractNo_xpath}    10    页面超时
+    Input Text    ${sqjcx_fgs_contractNo_xpath}    ${sqjcx_fgs_contractNo}
+
+申请件查询-分公司-按借款人查询
+    [Arguments]    ${sqjcx_fgs_clientName}
+    Wait Until Element Is Visible    ${sqjcx_fgs_clientName_xpath}    10    页面超时
+    Input Text    ${sqjcx_fgs_clientName_xpath}    ${sqjcx_fgs_clientName}
+
+申请件查询-分公司-查询
+    Execute Javascript    ${sqjcx_fgs_cx_js}
+
+申请件查询-分公司-导出文件
+    Wait Until Element Is Visible    xpath=//*[@id="main-container"]/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div[2]/div[4]/div[1]/span[1]    10    页面超时
+    Execute Javascript    ${sqjcx_fgs_dcwj_js}
+    sleep    2

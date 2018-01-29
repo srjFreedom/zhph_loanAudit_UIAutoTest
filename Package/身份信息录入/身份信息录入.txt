@@ -1,0 +1,144 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+...
+...               随机生成身份证号和手机号，因为用了自建库，需要添加
+Library           Selenium2Library
+Library           random
+Variables         sfxxlr_data.py
+Variables         sfxxlr_locator.py
+Library           MyselfLibrary
+
+*** Keywords ***
+身份信息录入-输入客户姓名
+    [Arguments]    ${sfxxlr_clientName}
+    [Documentation]    必传参数： ${clientName}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${sfxxlr_clientName_xpath}    10    页面等待已超过10秒
+    Input Text    ${sfxxlr_clientName_xpath}    ${sfxxlr_clientName}    #输入客户姓名
+
+身份信息录入-输入客户电话号码
+    [Documentation]    客户电话号码是随机生成
+    ...
+    ...    也可自定义
+    ...
+    ...    将Input Text \ \ \ ${clientPhoneOne_xpath} \ \ \ ${phone}中的变量${phone}，替换为自定义数据即可
+    ${phone}    Create Phone    #随机生成手机号
+    Set Suite Variable    ${phone}    ${phone}
+    Wait Until Element Is Visible    ${sfxxlr_clientPhoneOne_xpath}    10    页面等待已超过10秒
+    Input Text    ${sfxxlr_clientPhoneOne_xpath}    ${phone}    #输入手机号
+
+身份信息录入-选择省
+    [Documentation]    省份是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shengx} \ \ \ ${index1}中的变量${index1}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #省
+    ${sheng}    Catenate    SEPARATOR=    ${sfxxlr_clientProvince_xpath}    /option    #拼接省xpath
+    ${shengx}    Catenate    SEPARATOR=    xpath=    ${sfxxlr_clientProvince_xpath}
+    ${count1}    Get Matching Xpath Count    ${sheng}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${shengx}    10    页面等待已超过10秒
+    Select From List By Index    ${shengx}    ${index1}    #选择省
+    sleep    1
+
+身份信息录入-选择市
+    [Documentation]    市是随机生成，也可自定义
+    ...
+    ...    将Select From List By Index \ \ \ ${shix} \ \ \ ${index2}中的变量${index2}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #市
+    ${shi}    Catenate    SEPARATOR=    ${sfxxlr_clientCity_xpath}    /option    #拼接市xpath
+    ${shix}    Catenate    SEPARATOR=    xpath=    ${sfxxlr_clientCity_xpath}
+    ${count2}    Get Matching Xpath Count    ${shi}
+    ${random2}    Evaluate    random.randint(1,${count2}-1)    random
+    ${index2}    Convert To String    ${random2}
+    Wait Until Element Is Visible    ${shix}    10    页面等待已超过10秒
+    Select From List By index    ${shix}    ${index2}    #选择市
+    sleep    1
+
+身份信息录入-选择区
+    [Documentation]    区是随机生成，也可自定义
+    ...
+    ...    在关键字“区随机”中，将Select From List By Index \ \ \ ${qux} \ \ \ ${index3}中的变量${index3}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #区
+    ${qu}    Catenate    SEPARATOR=    ${sfxxlr_clientConty_xpath}    /option    #拼接区xpath
+    ${qux}    Catenate    SEPARATOR=    xpath=    ${sfxxlr_clientConty_xpath}
+    Set Suite Variable    ${qux}    ${qux}
+    ${count3}    Get Matching Xpath Count    ${qu}
+    Set Suite Variable    ${count3}    ${count3}
+    Run Keyword If    ${count3}==1    log    没有区地址
+    ...    ELSE    身份信息录入-区随机
+    sleep    1
+
+身份信息录入-区随机
+    ${random3}    Evaluate    random.randint(1,${count3}-1)    random
+    ${index3}    Convert To String    ${random3}
+    Wait Until Element Is Visible    ${qux}    10    页面等待已超过10秒
+    Select From List By Index    ${qux}    ${index3}    #选择区
+    sleep    1
+
+身份信息录入-输入详细地址
+    [Arguments]    ${sfxxlr_clientAddr}
+    [Documentation]    必传参数： ${clientAddr}
+    ...
+    ...    在data文件中取值
+    #详细地址
+    Wait Until Element Is Visible    ${sfxxlr_clientAddr_xpath}    10    页面等待已超过10秒
+    Input Text    ${sfxxlr_clientAddr_xpath}    ${sfxxlr_clientAddr}    #填写详细地址
+
+身份信息录入-输入身份证号码
+    [Documentation]    避免身份证号的查找麻烦，身份证号是随机生成的，也可以自定义
+    ...
+    ...    将Input Text ${idCard_xpath} ${id}中的变量${id}，替换为自定义数据即可
+    ${id}    Create ID    #随机生成身份证号
+    Set Suite Variable    ${id}    ${id}
+    Wait Until Element Is Visible    ${sfxxlr_idCard_xpath}    10    页面等待已超过10秒
+    Input Text    ${sfxxlr_idCard_xpath}    ${id}    #输入身份证号
+
+身份信息录入-确认身份证号码
+    [Documentation]    确认身份号取的是随机值，当关键字“输入身份证号码”自定义后
+    ...
+    ...    注意修改“确认身份证号码”中的ID值
+    ...
+    ...    将Input Text ${idCardtwo_xpath} ${id}中的变量${id}，替换为自定义数据即可
+    Wait Until Element Is Visible    ${sfxxlr_idCardtwo_xpath}    10    页面等待已超过10秒
+    Input Text    ${sfxxlr_idCardtwo_xpath}    ${id}    #确认身份证号
+
+身份信息录入-输入身份证有效期开始
+    [Arguments]    ${sfxxlr_effDate}
+    [Documentation]    必传参数：${effDate}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${sfxxlr_effDate_xpath}    10    页面等待已超过10秒
+    Input Text    ${sfxxlr_effDate_xpath}    ${sfxxlr_effDate}
+    Click Element    xpath=//*[@id="breadcrumbs"]/ul/li[2]
+
+身份信息录入-输入身份证有效期结束
+    [Arguments]    ${sfxxlr_expDate}
+    [Documentation]    必传参数：${expDate}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${sfxxlr_expDate_xpath}    10    页面等待已超过10秒
+    Input Text    ${sfxxlr_expDate_xpath}    ${sfxxlr_expDate}
+    Click Element    xpath=//*[@id="breadcrumbs"]/ul/li[2]
+
+身份信息录入提交
+    Sleep    1
+    Wait Until Element Is Visible    ${sfxxlr_tijiao_xpath}    10    页面等待已超过10秒
+    Click Button    ${sfxxlr_tijiao_xpath}
+
+身份信息录入确认
+    Wait Until Element Is Visible    ${sfxxlr_queren_css}    10    页面等待已超过10秒
+    Click Button    ${sfxxlr_queren_css}
+
+身份信息录入撤销
+    Wait Until Element Is Visible    ${sfxxlr_cx_xpath}    10    页面超时
+    Click Button    ${sfxxlr_cx_xpath}

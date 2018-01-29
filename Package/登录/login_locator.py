@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 
-Locator_loginCode = 'id = loginCode'
-Locator_inputPassword = 'id = inputPassword'
-Locator_dengLuAnNiu = 'xpath = //button[@onclick="login();"]'
+#网址
+loginCode_xpath = 'xpath=//*[@id="loginCode"]'
+
+#用户名
+inputPassword_xpath = 'xpath=//*[@id="inputPassword"]'
+
+#密码
+denglu_xpath = 'xpath=//*[@id="myForm"]/fieldset/div/div[2]/button'

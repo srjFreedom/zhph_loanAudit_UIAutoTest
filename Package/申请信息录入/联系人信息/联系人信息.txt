@@ -1,0 +1,123 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+Library           Selenium2Library
+Variables         lxrxx_locator.py
+Variables         lxrxx_data.py
+
+*** Keywords ***
+选择联系人信息页面
+    sleep    3
+    Select Frame    id=layui-layer-iframe1
+    Wait Until Element Is Visible    ${lxrxxym_xpath}    15    页面等待已超过10秒
+    Click Element    ${lxrxxym_xpath}
+    sleep    1
+
+联系人信息-输入配偶姓名
+    [Arguments]    ${lxrxx_familyMarryContactName}
+    [Documentation]    必传参数： ${familyMarryContactName}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${lxrxx_familyMarryContactName_xpath}    10    页面等待已超过10秒
+    Input Text    ${lxrxx_familyMarryContactName_xpath}    ${lxrxx_familyMarryContactName}
+
+联系人信息-输入配偶移动电话
+    [Arguments]    ${lxrxx_familyMarryContactMobile}
+    [Documentation]    必传参数： ${familyMarryContactMobile}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${lxrxx_familyMarryContactMobile_xpath}    10    页面等待已超过10秒
+    Input Text    ${lxrxx_familyMarryContactMobile_xpath}    ${lxrxx_familyMarryContactMobile}
+
+联系人信息-输入家庭联系人姓名
+    [Arguments]    ${lxrxx_familyContactName}
+    [Documentation]    必传参数： ${familyContactName}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${lxrxx_familyContactName_xpath}    10    页面等待已超过10秒
+    Input Text    ${lxrxx_familyContactName_xpath}    ${lxrxx_familyContactName}
+
+联系人信息-选择家庭联系人与本人关系
+    [Documentation]    家庭联系人与本人关系为随机选择，也可自定义
+    ...
+    ...    将Select From List By Index ${familyContactx} ${index1}中的变量${index1}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #家庭联系人与本人关系
+    ${familyContact}    Catenate    SEPARATOR=    ${lxrxx_familyContactRelation_xpath}    /option    #拼接家庭联系人与本人关系 xpath
+    ${familyContactx}    Catenate    SEPARATOR=    xpath=    ${lxrxx_familyContactRelation_xpath}
+    ${count1}    Get Matching Xpath Count    ${familyContact}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${familyContactx}    10    页面等待已超过10秒
+    Select From List By Index    ${familyContactx}    ${index1}    #选择家庭联系人与本人关系
+
+联系人信息-输入家庭联系人移动电话
+    [Arguments]    ${lxrxx_familyContactMobile}
+    [Documentation]    必传参数： ${familyContactMobile}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${lxrxx_familyContactMobile_xpath}    10    页面等待已超过10秒
+    Input Text    ${lxrxx_familyContactMobile_xpath}    ${lxrxx_familyContactMobile}
+
+联系人信息-输入工作联系人姓名
+    [Arguments]    ${lxrxx_workContactName}
+    [Documentation]    必传参数： ${workContactName}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${lxrxx_workContactName_xpath}    10    页面等待已超过10秒
+    Input Text    ${lxrxx_workContactName_xpath}    ${lxrxx_workContactName}
+
+联系人信息-选择工作联系人与本人关系
+    [Documentation]    工作联系人与本人关系为随机选择，也可自定义
+    ...
+    ...    将Select From List By Index ${workContactx} ${index1}中的变量${index1}，替换为自定义数据即可
+    ...
+    ...    index从0开始计数，“请选择”为0，以此类推
+    #工作联系人与本人关系
+    ${workContact}    Catenate    SEPARATOR=    ${lxrxx_workContactRelation_xpath}    /option    #拼接工作联系人与本人关系xpath
+    ${workContactx}    Catenate    SEPARATOR=    xpath=    ${lxrxx_workContactRelation_xpath}
+    ${count1}    Get Matching Xpath Count    ${workContact}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${workContactx}    10    页面等待已超过10秒
+    Select From List By Index    ${workContactx}    ${index1}    #工作联系人与本人关系
+
+联系人信息-输入工作联系人移动电话
+    [Arguments]    ${lxrxx_workContactMobile}
+    [Documentation]    必传参数： ${workContactMobile}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${lxrxx_workContactMobile_xpath}    10    页面等待已超过10秒
+    Input Text    ${lxrxx_workContactMobile_xpath}    ${lxrxx_workContactMobile}
+
+联系人信息-添加联系人
+    Wait Until Element Is Visible    ${lxrxx_tjlxr_xpath}    10    页面等待已超过10秒
+    Click Button    ${lxrxx_tjlxr_xpath}
+
+联系人信息-确认添加联系人
+    Wait Until Element Is Visible    ${lxrxx_qrtj_xpath}    10    页面等待已超过10秒
+    Click Button    ${lxrxx_qrtj_xpath}
+
+联系人信息上一步
+    Wait Until Element Is Visible    ${lxrxx_syb_xpath}    10    页面等待已超过10秒
+    Click Button    ${lxrxx_syb_xpath}
+
+联系人信息暂存
+    Wait Until Element Is Visible    ${lxrxx_zc_css}    10    页面等待已超过10秒
+    Click Button    ${lxrxx_zc_css}
+
+联系人信息暂存确认
+    sleep    1
+    Wait Until Element Is Visible    ${lxrxx_zcqr_xpath}    10    页面等待已超过10秒
+    Click Button    ${lxrxx_zcqr_xpath}
+
+联系人信息下一步
+    Wait Until Element Is Visible    ${lxrxx_xyb_xpath}    10    页面等待已超过10秒
+    Click Button    ${lxrxx_xyb_xpath}
+    sleep    2
+
+联系人信息返回
+    Wait Until Element Is Visible    ${lxrxx_fh_xpath}    10    页面等待已超过10秒
+    Click Button    ${lxrxx_fh_xpath}

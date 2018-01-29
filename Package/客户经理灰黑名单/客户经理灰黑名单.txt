@@ -1,0 +1,46 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         khjlhhmd_data.py
+Variables         khjlhhmd_locator.py
+
+*** Keywords ***
+客户经理灰黑名单-灰名单页
+    Wait Until Element Is Visible    ${khjlhhmd_huimd_xpath}    10    页面超时
+    Click Element    ${khjlhhmd_huimd_xpath}
+
+客户经理灰黑名单-黑名单页
+    Wait Until Element Is Visible    ${khjlhhmd_heimd_xpath}    10    页面超时
+    Click Element    ${khjlhhmd_heimd_xpath}
+
+客户经理灰黑名单-按工号查询
+    [Arguments]    ${khjlhhmd_jobNo}
+    Wait Until Element Is Visible    ${khjlhhmd_jobNo_xpath}    10    页面超时
+    Input Text    ${khjlhhmd_jobNo_xpath}    ${khjlhhmd_jobNo}
+
+客户经理灰黑名单-按客户经理查询
+    [Arguments]    ${khjlhhmd_managerName}
+    Wait Until Element Is Visible    ${khjlhhmd_managerName_xpath}    10    页面超时
+    Input Text    ${khjlhhmd_managerName_xpath}    ${khjlhhmd_managerName}
+
+客户经理灰黑名单-按导入时间查询
+    [Arguments]    ${khjlhhmd_importTime}
+    Wait Until Element Is Visible    ${khjlhhmd_importTime_xpath}    10    页面超时
+    Input Text    ${khjlhhmd_importTime_xpath}    ${khjlhhmd_importTime}
+
+客户经理灰黑名单-按适用年月查询
+    [Arguments]    ${khjlhhmd_entryTimes}
+    Wait Until Element Is Visible    ${khjlhhmd_entryTimes_xpath}    10    页面超时
+    Input Text    ${khjlhhmd_entryTimes_xpath}    ${khjlhhmd_entryTimes}
+
+客户经理灰黑名单-按分公司查询
+    [Arguments]    ${khjlhhmd_orgNumber_chosen}
+    Wait Until Element Is Enabled    ${khjlhhmd_orgNumber_chosen_xpath1}    10    页面超时
+    Click Element    ${khjlhhmd_orgNumber_chosen_xpath1}
+    sleep    1
+    press key    ${khjlhhmd_orgNumber_chosen_xpath2}    ${khjlhhmd_orgNumber_chosen}
+    sleep    1
+    Press Key    ${khjlhhmd_orgNumber_chosen_xpath2}    \\13
+
+客户经理灰黑名单-查询
+    Wait Until Element Is Visible    ${khjlhhmd_cx_xpath}    10    页面超时
+    Click Button    ${khjlhhmd_cx_xpath}

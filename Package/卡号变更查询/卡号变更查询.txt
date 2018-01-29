@@ -1,0 +1,55 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         khbgcx_data.py
+Variables         khbgcx_locator.py
+
+*** Keywords ***
+卡号变更查询-按合同号查询
+    [Arguments]    ${khbgcx_contractNo}
+    Wait Until Element Is Visible    ${khbgcx_contractNo_xpath}    10    页面超时
+    Input Text    ${khbgcx_contractNo_xpath}    ${khbgcx_contractNo}
+
+卡号变更查询-按借款人查询
+    [Arguments]    ${khbgcx_clientName}
+    Wait Until Element Is Visible    ${khbgcx_clientName_xpath}    10    页面超时
+    Input Text    ${khbgcx_clientName_xpath}    ${khbgcx_clientName}
+
+卡号变更查询-按身份证查询
+    [Arguments]    ${khbgcx_idCard}
+    Wait Until Element Is Visible    ${khbgcx_idCard_xpath}    10    页面超时
+    Input Text    ${khbgcx_idCard_xpath}    ${khbgcx_idCard}
+
+卡号变更查询-查询
+    Wait Until Element Is Visible    ${khbgcx_cx_xpath}    10    页面超时
+    Click Button    ${khbgcx_cx_xpath}
+
+卡号变更查询-详情
+    sleep    1
+    Wait Until Element Is Visible    ${khbgcx_xq_xpath}    10    页面超时
+    Click Button    ${khbgcx_xq_xpath}
+
+卡号变更查询-进入卡号变更页面
+    Wait Until Element Is Visible    ${khbgcx_jrkhbgym_xpath}    10    页面超时
+    Click Element    ${khbgcx_jrkhbgym_xpath}
+
+卡号变更查询-卡号变更页面返回
+    Wait Until Element Is Visible    ${khbgcx_khbgymfh_xpath}    10    页面超时
+    Click Button    ${khbgcx_khbgymfh_xpath}
+
+卡号变更查询-进入附件上传页面
+    Wait Until Element Is Visible    ${khbgcx_jrfjscym_xpath}    10    页面超时
+    Click Element    ${khbgcx_jrfjscym_xpath}
+
+卡号变更查询-附件上传下载
+    [Arguments]    ${khbgcx_download}
+    [Documentation]    ${khbgcx_download}取值，代表下载第几个文件（从上至下）
+    ${downloadx}    Set Variable    xpath=/html/body/div[3]/div[2]/div/div[2]/div/div[3]/div/table/tbody/tr[${khbgcx_download}]/td[7]/a[1]/button
+    Wait Until Element Is Visible    ${downloadx}    10    页面超时
+    Click Button    ${downloadx}
+
+卡号变更查询-附件上传预览
+    [Arguments]    ${khbgcx_preview}
+    [Documentation]    ${khbgcx_preview} 取值，代表预览第几个文件（从上至下）
+    ${previewx}    Set Variable    xpath=/html/body/div[3]/div[2]/div/div[2]/div/div[3]/div/table/tbody/tr[${khbgcx_preview}]/td[7]/a[2]/button
+    Wait Until Element Is Visible    ${previewx}    10    页面超时
+    Click Button    ${previewx}

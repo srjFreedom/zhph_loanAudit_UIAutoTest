@@ -1,0 +1,147 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         fgsxxqy_data.py
+Variables         fgsxxqy_locator.py
+Library           DatabaseLibrary
+
+*** Keywords ***
+分公司线下签约-按合同号查询
+    [Arguments]    ${fgsxxqy_hth}
+    Input Text    ${fgsxxqy_hth_xpath}    ${fgsxxqy_hth}
+
+分公司线下签约-按借款人查询
+    [Arguments]    ${fgsxxqy_jkr}
+    Input Text    ${fgsxxqy_jkr_xpath}    ${fgsxxqy_jkr}
+
+分公司线下签约-查询
+    Click Button    ${fgsxxqy_cx_xpath}
+
+分公司线下签约-签约
+    Wait Until Element Is Visible    ${fgsxxqy_qy_xpath}    10    页面超时
+    Click Button    ${fgsxxqy_qy_xpath}
+
+分公司线下签约-重新签约
+    Wait Until Element Is Visible    ${fgsxxqy_cxqy_xpath}    10    页面超时
+    Click Button    ${fgsxxqy_cxqy_xpath}
+
+分公司线下签约-重新签约确认
+    Wait Until Element Is Visible    ${fgsxxqy_cxqy_qr_xpath}    10    页面超时
+    Click Button    ${fgsxxqy_cxqy_qr_xpath}
+    Wait Until Element Is Visible    css=.btn-myStyle    10    页面超时
+    Click Button    css=.btn-myStyle
+
+分公司线下签约-回退
+    Wait Until Element Is Visible    ${fgsxxqy_ht_xpath}    10    页面超时
+    Click Button    ${fgsxxqy_ht_xpath}
+
+分公司线下签约-回退确认
+    Wait Until Element Is Visible    ${fgsxxqy_ht_qr_xpath}    10    页面超时
+    Click Button    ${fgsxxqy_ht_qr_xpath}
+    Wait Until Element Is Visible    css=.btn-myStyle    10    页面超时
+    Click Button    css=.btn-myStyle
+
+分公司线下签约-约定放款日期
+    [Arguments]    ${fgsxxqy_grantDate}
+    Input Text    ${fgsxxqy_grantDate_xpath}    ${fgsxxqy_grantDate}
+    Click Element    xpath=//*[@id="signedForm"]/table/tbody/tr[1]/td[3]
+
+分公司线下签约-选择开户银行
+    [Arguments]    ${fgsxxqy_grantBank}
+    Select From List By Index    ${fgsxxqy_grantBank_xpath}    ${fgsxxqy_grantBank}
+
+分公司线下签约-输入银行卡号
+    [Arguments]    ${fgsxxqy_grantAccount}
+    Input Text    ${fgsxxqy_grantAccount_xpath}    ${fgsxxqy_grantAccount}
+
+分公司线下签约-输入银行支行
+    [Arguments]    ${fgsxxqy_grantBankDescribe}
+    Input Text    ${fgsxxqy_grantBankDescribe_xpath}    ${fgsxxqy_grantBankDescribe}
+
+分公司线下签约-开户城市-省
+    #省
+    ${grantsheng}    Catenate    SEPARATOR=    ${fgsxxqy_grantProvince_xpath}    /option    #拼接省xpath
+    ${grantshengx}    Catenate    SEPARATOR=    xpath=    ${fgsxxqy_grantProvince_xpath}
+    ${count1}    Get Matching Xpath Count    ${grantsheng}
+    ${random1}    Evaluate    random.randint(1,${count1}-1)    random
+    ${index1}    Convert To String    ${random1}
+    Wait Until Element Is Visible    ${grantshengx}    10    页面等待已超过10秒
+    Select From List By Index    ${grantshengx}    ${index1}    #选择省
+    sleep    1
+
+分公司线下签约-开户城市-市
+    #市
+    ${grantshi}    Catenate    SEPARATOR=    ${fgsxxqy_grantCity_xpath}    /option    #拼接市xpath
+    ${grantshix}    Catenate    SEPARATOR=    xpath=    ${fgsxxqy_grantCity_xpath}
+    ${count2}    Get Matching Xpath Count    ${grantshi}
+    ${random2}    Evaluate    random.randint(1,${count2}-1)    random
+    ${index2}    Convert To String    ${random2}
+    Wait Until Element Is Visible    ${grantshix}    10    页面等待已超过10秒
+    Select From List By index    ${grantshix}    ${index2}    #选择市
+    sleep    1
+
+分公司线下签约-开户城市-区
+    #区
+    ${grantqu}    Catenate    SEPARATOR=    ${fgsxxqy_grantCounty_xpath}    /option    #拼接区xpath
+    ${grantqux}    Catenate    SEPARATOR=    xpath=    ${fgsxxqy_grantCounty_xpath}
+    Set Suite Variable    ${grantqux}    ${grantqux}
+    ${count3}    Get Matching Xpath Count    ${grantqu}
+    Set Suite Variable    ${count3}    ${count3}
+    Run Keyword If    ${count3}==1    log    没有区地址
+    ...    ELSE    分公司线下签约-开户城市-区随机
+    sleep    1
+
+分公司线下签约-开户城市-区随机
+    ${random3}    Evaluate    random.randint(1,${count3}-1)    random
+    ${index3}    Convert To String    ${random3}
+    Wait Until Element Is Visible    ${grantqux}    10    页面等待已超过10秒
+    Select From List By Index    ${grantqux}    ${index3}    #选择区
+    sleep    1
+
+分公司线下签约-点击注册授权
+    Click Element    ${fgsxxqy_zcsq_xpath}
+
+分公司线下签约-返回
+    Click Element    ${fgsxxqy_fh_xpath}
+
+分公司线下签约-拒绝
+    [Arguments]    ${fgsxxqy_hth}
+    ${hthpinjie}    catenate    SEPARATOR=    '    ${fgsxxqy_hth}    '    #拼接条件查询
+    Connect To Database Using Custom Params    cx_Oracle    ${fgsxxqy_jj_database}    #数据库连接
+    @{e}    Query    select client_id from zhph_loan_info \ where CONTRACT_NO = ${hthpinjie}
+    log many    @{e}
+    ${clientid}    decode    ${e[0][0]}    GBK
+    Disconnect From Database    #断开数据库连接
+    Execute Javascript    window.qyRefuseModelShow('${clientid}','SIGN_REJECTED')
+
+分公司线下签约-拒绝备注
+    [Arguments]    ${fgsxxqy_jj_jjbz}
+    Wait Until Element Is Visible    ${fgsxxqy_jj_jjbz_xpath}    10    页面超时
+    Input Text    ${fgsxxqy_jj_jjbz_xpath}    ${fgsxxqy_jj_jjbz}
+
+分公司线下签约-拒绝提交
+    Execute Javascript    ${fgsxxqy_jj_jjtj_js}
+
+分公司线下签约-输入登录密码
+    [Arguments]    ${fgsxxqy_jj_jjdlmm}
+    Input Text    ${fgsxxqy_jj_jjdlmm_xpath}    ${fgsxxqy_jj_jjdlmm}
+
+分公司线下签约-登录密码确认
+    Click Button    ${fgsxxqy_jj_jjdlmmqr_xpath}
+    Wait Until Element Is Visible    css=.btn-myStyle    10    页面超时
+    Click Button    css=.btn-myStyle
+
+分公司线下签约-客户放弃
+    [Arguments]    ${fgsxxqy_hth}
+    ${hthpinjie}    catenate    SEPARATOR=    '    ${fgsxxqy_hth}    '    #拼接条件查询
+    Connect To Database Using Custom Params    cx_Oracle    ${fgsxxqy_jj_database}    #数据库连接
+    @{e}    Query    select client_id from zhph_loan_info \ where CONTRACT_NO = ${hthpinjie}
+    log many    @{e}
+    ${clientid}    decode    ${e[0][0]}    GBK
+    Disconnect From Database    #断开数据库连接
+    Execute Javascript    window.qyGiveUpModelShow('${clientid}','SIGN_GIVE_UP')
+
+分公司线下签约-客户放弃提交
+    Wait Until Element Is Visible    xpath=//*[@id="qyGiveUpModal"]/div/div/div[1]/p/span
+    Execute Javascript    ${fgsxxqy_khfq_tj_js}
+    Wait Until Element Is Visible    css=.btn-myStyle    10    页面超时
+    Click Button    css=.btn-myStyle

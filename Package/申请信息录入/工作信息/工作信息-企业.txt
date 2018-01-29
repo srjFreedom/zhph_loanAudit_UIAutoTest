@@ -1,0 +1,25 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+Library           Selenium2Library
+Variables         gzxx_data.py
+Variables         gzxx_locator.py
+
+*** Keywords ***
+工作信息-选择注册执照日期
+    [Arguments]    ${gzxx_companyEnterDate}
+    [Documentation]    必传参数： ${companyEnterDate}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_companyEnterDate_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_companyEnterDate_xpath}    ${gzxx_companyEnterDate}
+    Click Element    xpath=//*[@id="workForm"]/table/tbody/tr[1]/td
+
+工作信息-输入占股比例
+    [Arguments]    ${gzxx_stockShare}
+    [Documentation]    必传参数： ${stockShare}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${gzxx_stockShare_xpath}    10    页面等待已超过10秒
+    Input Text    ${gzxx_stockShare_xpath}    ${gzxx_stockShare}

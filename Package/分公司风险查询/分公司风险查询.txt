@@ -1,0 +1,9 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         fgsfxcx_data.py
+Variables         fgsfxcx_locator.py
+
+*** Keywords ***
+分公司风险查询-导出
+    Wait Until Element Is Visible    ${fgsfxcx_dc_xpath}    10    页面超时
+    Click Element    ${fgsfxcx_dc_xpath}

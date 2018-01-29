@@ -1,0 +1,85 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+Library           Selenium2Library
+Variables         zcxx_data.py
+Variables         zcxx_locator.py
+
+*** Keywords ***
+选择资产信息页面
+    sleep    3
+    Select Frame    id=layui-layer-iframe1
+    Wait Until Element Is Visible    ${zcxxym_xpath}    15    页面等待已超过10秒
+    Click Element    ${zcxxym_xpath}
+    sleep    1
+
+资产信息-输入房产总数量
+    [Arguments]    ${zcxx_estateNum}
+    [Documentation]    必传参数： ${estateNum}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${zcxx_estateNum_xpath}    10    页面等待已超过10秒
+    Input Text    ${zcxx_estateNum_xpath}    ${zcxx_estateNum}
+
+资产信息-输入房产按揭数量
+    [Arguments]    ${zcxx_estateMortgageNum}
+    [Documentation]    必传参数： ${estateMortgageNum}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${zcxx_estateMortgageNum_xpath}    10    页面等待已超过10秒
+    Input Text    ${zcxx_estateMortgageNum_xpath}    ${zcxx_estateMortgageNum}
+
+资产信息-输入房产按揭金额
+    [Arguments]    ${zcxx_estateMortgageAmount}
+    [Documentation]    必传参数： ${estateMortgageAmount}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${zcxx_estateMortgageAmount_xpath}    10    页面等待已超过10秒
+    Input Text    ${zcxx_estateMortgageAmount_xpath}    ${zcxx_estateMortgageAmount}
+
+资产信息-输入车辆总数量
+    [Arguments]    ${zcxx_carCount}
+    [Documentation]    必传参数： ${carCount}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${zcxx_carCount_xpath}    10    页面等待已超过10秒
+    Input Text    ${zcxx_carCount_xpath}    ${zcxx_carCount}
+
+资产信息-输入车辆按揭数量
+    [Arguments]    ${zcxx_carMortgageNum}
+    [Documentation]    必传参数： ${carMortgageNum}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${zcxx_carMortgageNum_xpath}    10    页面等待已超过10秒
+    Input Text    ${zcxx_carMortgageNum_xpath}    ${zcxx_carMortgageNum}
+
+资产信息-输入车辆按揭金额
+    [Arguments]    ${zcxx_carMortgageAmount}
+    [Documentation]    必传参数： ${carMortgageAmount}
+    ...
+    ...    在data文件中取值
+    Wait Until Element Is Visible    ${zcxx_carMortgageAmount_xpath}    10    页面等待已超过10秒
+    Input Text    ${zcxx_carMortgageAmount_xpath}    ${zcxx_carMortgageAmount}
+
+资产信息上一步
+    Wait Until Element Is Visible    ${zcxx_syb_xpath}    10    页面等待已超过10秒
+    Click Button    ${zcxx_syb_xpath}
+
+资产信息暂存
+    Wait Until Element Is Visible    ${zcxx_zc_css}    10    页面等待已超过10秒
+    Click Button    ${zcxx_zc_css}
+
+资产信息暂存确认
+    sleep    1
+    Wait Until Element Is Visible    ${zcxx_zcqr_xpath}    10    页面等待已超过10秒
+    Click Button    ${zcxx_zcqr_xpath}
+
+资产信息下一步
+    Wait Until Element Is Visible    ${zcxx_xyb_xpath}    10    页面等待已超过10秒
+    Click Button    ${zcxx_xyb_xpath}
+    sleep    2
+
+资产信息返回
+    Wait Until Element Is Visible    ${zcxx_fh_xpath}    10    页面等待已超过10秒
+    Click Button    ${zcxx_fh_xpath}

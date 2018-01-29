@@ -1,0 +1,60 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         fgskkyy_data.py
+Variables         fgskkyy_locator.py
+
+*** Keywords ***
+分公司扣款预约-按合同号查询
+    [Arguments]    ${fgskkyy_hth}
+    Wait Until Element Is Visible    ${fgskkyy_hth_xpath}    10    页面超时
+    Input Text    ${fgskkyy_hth_xpath}    ${fgskkyy_hth}
+
+分公司扣款预约-按借款人查询
+    [Arguments]    ${fgskkyy_jkr}
+    Wait Until Element Is Visible    ${fgskkyy_jkr_xpath}    10    页面超时
+    Input Text    ${fgskkyy_jkr_xpath}    ${fgskkyy_jkr}
+
+分公司扣款预约-按分公司查询
+    [Arguments]    ${fgskkyy_fgs}
+    Wait Until Element Is Enabled    ${fgskkyy_fgs_xpath1}    10    页面超时
+    Click Element    ${fgskkyy_fgs_xpath1}
+    sleep    1
+    press key    ${fgskkyy_fgs_xpath2}    ${fgskkyy_fgs}
+    sleep    1
+    Press Key    ${fgskkyy_fgs_xpath2}    \\13
+
+分公司扣款预约-按月还款日期查询
+    [Arguments]    ${fgskkyy_visitDate}
+    Wait Until Element Is Visible    ${fgskkyy_visitDate_xpath}    10    页面超时
+    Input Text    ${fgskkyy_visitDate_xpath}    ${fgskkyy_visitDate}
+
+分公司扣款预约-按产品类型查询
+    [Arguments]    ${fgskkyy_loanProduct}
+    Wait Until Element Is Visible    ${fgskkyy_loanProduct_xpath}    10    页面超时
+    Select From List By Index    ${fgskkyy_loanProduct_xpath}    ${fgskkyy_loanProduct}
+
+分公司扣款预约-按主体查询
+    [Arguments]    ${fgskkyy_mainBody}
+    Wait Until Element Is Visible    ${fgskkyy_mainBody_xpath}    10    页面超时
+    Select From List By Index    ${fgskkyy_mainBody_xpath}    ${fgskkyy_mainBody}
+
+分公司扣款预约-查询
+    Wait Until Element Is Visible    ${fgskkyy_cx_xpath}    10    页面超时
+    Click Button    ${fgskkyy_cx_xpath}
+
+分公司扣款预约-输入预约金额
+    [Arguments]    ${fgskkyy_yyje}
+    Wait Until Element Is Visible    ${fgskkyy_yyje_xpath}    10    页面超时
+    Input Text    ${fgskkyy_yyje_xpath}    ${fgskkyy_yyje}
+
+分公司扣款预约-预约
+    Wait Until Element Is Visible    ${fgskkyy_yy_xpath}    10    页面超时
+    Click Element    ${fgskkyy_yy_xpath}
+
+分公司扣款预约-取消预约
+    Wait Until Element Is Visible    ${fgskkyy_qxyy_xpath}    10    页面超时
+    Click Element    ${fgskkyy_qxyy_xpath}
+
+分公司扣款预约-确认
+    Wait Until Element Is Visible    ${fgskkyy_qr_xpath}    10    页面超时
+    Click Button    ${fgskkyy_qr_xpath}

@@ -1,0 +1,106 @@
+*** Settings ***
+Library           Selenium2Library
+Variables         khbgsq_data.py
+Variables         khbgsq_locator.py
+
+*** Keywords ***
+卡号变更申请-按合同号查询
+    [Arguments]    ${khbgsq_contractNo}
+    Wait Until Element Is Visible    ${khbgsq_contractNo_xpath}    10    页面超时
+    Input Text    ${khbgsq_contractNo_xpath}    ${khbgsq_contractNo}
+
+卡号变更申请-按借款人查询
+    [Arguments]    ${khbgsq_clientName}
+    Wait Until Element Is Visible    ${khbgsq_clientName_xpath}    10    页面超时
+    Input Text    ${khbgsq_clientName_xpath}    ${khbgsq_clientName}
+
+卡号变更申请-按身份证查询
+    [Arguments]    ${khbgsq_idCard}
+    Wait Until Element Is Visible    ${khbgsq_idCard_xpath}    10    页面超时
+    Input Text    ${khbgsq_idCard_xpath}    ${khbgsq_idCard}
+
+卡号变更申请-查询
+    Wait Until Element Is Visible    ${khbgsq_cx_xpath}    10    页面超时
+    Click Button    ${khbgsq_cx_xpath}
+
+卡号变更申请-卡号变更
+    sleep    1
+    Wait Until Element Is Visible    ${khbgsq_khbg_xpath}    10    页面超时
+    Click Button    ${khbgsq_khbg_xpath}
+
+卡号变更申请-进入卡号变更页面
+    Wait Until Element Is Visible    ${khbgsq_jrkhbgym_xpath}    10    页面超时
+    Click Element    ${khbgsq_jrkhbgym_xpath}
+
+卡号变更申请-卡号变更页面返回
+    Wait Until Element Is Visible    ${khbgsq_khbgym_fh_xpath}    10    页面超时
+    Click Button    ${khbgsq_khbgym_fh_xpath}
+
+卡号变更申请-卡号变更页面绑定银行卡
+    Wait Until Element Is Visible    ${khbgsq_khbgym_bdyhk_xpath}    10    页面超时
+    Click Button    ${khbgsq_khbgym_bdyhk_xpath}
+
+卡号变更申请-选择客户身份证正面
+    [Arguments]    ${khbgsq_khsfzzm}
+    Wait Until Element Is Visible    ${khbgsq_khsfzzm_xpath}    10    页面超时
+    Choose File    ${khbgsq_khsfzzm_xpath}    ${khbgsq_khsfzzm}
+    sleep    1
+
+卡号变更申请-客户身份证正面上传
+    Wait Until Element Is Visible    ${khbgsq_khsfzzm_sc_xpath}    10    页面超时
+    Click Button    ${khbgsq_khsfzzm_sc_xpath}
+    sleep    1
+
+卡号变更申请-客户身份证正面删除
+    Wait Until Element Is Visible    ${khbgsq_khsfzzm_del_xpath}    10    页面超时
+    Click Button    ${khbgsq_khsfzzm_del_xpath}
+    sleep    1
+
+卡号变更申请-选择客户手持身份证正面
+    [Arguments]    ${khbgsq_khscsfzzm}
+    Wait Until Element Is Visible    ${khbgsq_khscsfzzm_xpath}    10    页面超时
+    Choose File    ${khbgsq_khscsfzzm_xpath}    ${khbgsq_khscsfzzm}
+    sleep    1
+
+卡号变更申请-客户手持身份证正面上传
+    Wait Until Element Is Visible    ${khbgsq_khscsfzzm_sc_xpath}    10    页面超时
+    Click Button    ${khbgsq_khscsfzzm_sc_xpath}
+    sleep    1
+
+卡号变更申请-客户手持身份证正面删除
+    Wait Until Element Is Visible    ${khbgsq_khscsfzzm_del_xpath}    10    页面超时
+    Click Button    ${khbgsq_khscsfzzm_del_xpath}
+    sleep    1
+
+卡号变更申请-上传成功确认
+    Wait Until Element Is Visible    ${khbgsq_sccgqr_xpath}    10    页面超时
+    Click Button    ${khbgsq_sccgqr_xpath}
+    sleep    1
+
+卡号变更申请-删除操作成功
+    Wait Until Element Is Visible    ${khbgsq_scczcg_xpath}    10    页面超时
+    Click Button    ${khbgsq_scczcg_xpath}
+    sleep    1
+
+卡号变更申请-解绑银行卡提交
+    Wait Until Element Is Visible    ${khbgsq_jbyhktj_xpath}    10    页面超时
+    Click Button    ${khbgsq_jbyhktj_xpath}
+
+卡号变更申请-进入附件上传页面
+    Wait Until Element Is Visible    ${khbgsq_jrfjscym_xpath}    10    页面超时
+    Click Element    ${khbgsq_jrfjscym_xpath}
+
+卡号变更申请-选择放扣款账户
+    [Arguments]    ${khbgsq_sqwtsphotos}
+    Wait Until Element Is Visible    ${khbgsq_sqwtsphotos_xpath}    10    页面超时
+    Choose File    ${khbgsq_sqwtsphotos_xpath}    ${khbgsq_sqwtsphotos}
+    sleep    3
+
+卡号变更申请-放扣款账户上传
+    Wait Until Element Is Visible    ${khbgsq_fkkzh_sc_xpath}    10    页面超时
+    Click Button    ${khbgsq_fkkzh_sc_xpath}
+    sleep    3
+
+卡号变更申请-附件上传成功确认
+    Wait Until Element Is Visible    ${khbgsq_fj_sccgqr_xpath}    10    页面超时
+    Click Button    ${khbgsq_fj_sccgqr_xpath}

@@ -1,0 +1,248 @@
+*** Settings ***
+Documentation     -*注意*-
+...
+...               resource中，***_locator.py文件不可动，只需修改***_data.py文件中的数据即可
+Library           Selenium2Library
+Variables         fjxx_data.py
+Variables         fjxx_locator.py
+
+*** Keywords ***
+选择附件信息页面
+    sleep    3
+    Select Frame    id=layui-layer-iframe1
+    Wait Until Element Is Visible    ${fjxxym_xpath}    15    页面等待已超过10秒
+    Click Element    ${fjxxym_xpath}
+    sleep    2
+
+附件信息-选择身份证
+    [Arguments]    ${fjxx_idSourceCard}
+    [Documentation]    必传参数： ${fjxx_idSourceCard}
+    ...
+    ...    在data文件中取值
+    #身份证
+    Choose File    ${fjxx_idSourceCard_xpath}    ${fjxx_idSourceCard}
+    sleep    3
+
+附件信息-上传身份证
+    #身份证
+    Click Button    ${fjxx_uploadTbody1_xpath}
+    Sleep    3
+
+附件信息-选择申请表
+    [Arguments]    ${fjxx_sqbApplication}
+    [Documentation]    必传参数： ${fjxx_sqbApplication}
+    ...
+    ...    在data文件中取值
+    #申请表
+    Choose File    ${fjxx_sqbApplication_xpath}    ${fjxx_sqbApplication}
+    sleep    3
+
+附件信息-上传申请表
+    #申请表
+    Click Button    ${fjxx_uploadTbody2_xpath}
+    Sleep    3
+
+附件信息-选择共签人身份证-原件
+    [Arguments]    ${fjxx_gqrIdSourceCard}
+    [Documentation]    必传参数： ${fjxx_gqrIdSourceCard}
+    ...
+    ...    在data文件中取值
+    #共签人身份证-原件
+    Choose File    ${fjxx_gqrIdSourceCard_xpath}    ${fjxx_gqrIdSourceCard}
+    sleep    3
+
+附件信息-上传共签人身份证-原件
+    #共签人身份证-原件
+    Click Button    ${fjxx_uploadTbody3_xpath}
+    Sleep    3
+
+附件信息-选择户口本
+    [Arguments]    ${fjxx_hkbInput}
+    [Documentation]    必传参数： ${fjxx_hkbInput}
+    ...
+    ...    在data文件中取值
+    #户口本
+    Choose File    ${fjxx_hkbInput_xpath}    ${fjxx_hkbInput}
+    sleep    3
+
+附件信息-上传户口本
+    #户口本
+    Click Button    ${fjxx_uploadTbody4_xpath}
+    Sleep    3
+
+附件信息-选择公积金
+    [Arguments]    ${fjxx_gjjInput}
+    [Documentation]    必传参数： ${fjxx_gjjInput}
+    ...
+    ...    在data文件中取值
+    #公积金
+    Choose File    ${fjxx_gjjInput_xpath}    ${fjxx_gjjInput}
+    sleep    3
+
+附件信息-上传公积金
+    #公积金
+    Click Button    ${fjxx_uploadTbody5_xpath}
+    Sleep    3
+
+附件信息-选择社保
+    [Arguments]    ${fjxx_sbInput}
+    [Documentation]    必传参数： ${fjxx_sbInput}
+    ...
+    ...    在data文件中取值
+    #社保
+    Choose File    ${fjxx_sbInput_xpath}    ${fjxx_sbInput}
+    sleep    3
+
+附件信息-上传社保
+    #社保
+    Click Button    ${fjxx_uploadTbody6_xpath}
+    Sleep    3
+
+附件信息-选择工资流水
+    [Arguments]    ${fjxx_gzlsInput}
+    [Documentation]    必传参数： ${fjxx_gzlsInput}
+    ...
+    ...    在data文件中取值
+    #工资流水
+    Choose File    ${fjxx_gzlsInput_xpath}    ${fjxx_gzlsInput}
+    sleep    3
+
+附件信息-上传工资流水
+    #工资流水
+    Click Button    ${fjxx_uploadTbody7_xpath}
+    Sleep    3
+
+附件信息-选择工作证明
+    [Arguments]    ${fjxx_gzzzInput}
+    [Documentation]    必传参数： ${fjxx_gzzzInput}
+    ...
+    ...    在data文件中取值
+    #工作证明
+    Choose File    ${fjxx_gzzzInput_xpath}    ${fjxx_gzzzInput}
+    sleep    3
+
+附件信息-上传工作证明
+    #工作证明
+    Click Button    ${fjxx_uploadTbody8_xpath}
+    Sleep    3
+
+附件信息-选择保单材料
+    [Arguments]    ${fjxx_bdclInput}
+    [Documentation]    必传参数： ${fjxx_bdclInput}
+    ...
+    ...    在data文件中取值
+    #保单材料
+    Choose File    ${fjxx_bdclInput_xpath}    ${fjxx_bdclInput}
+    sleep    3
+
+附件信息-上传保单材料
+    #保单材料
+    Click Button    ${fjxx_uploadTbody9_xpath}
+    Sleep    3
+
+附件信息-选择房产材料
+    [Arguments]    ${fjxx_fcclInput}
+    [Documentation]    必传参数： ${fjxx_fcclInput}
+    ...
+    ...    在data文件中取值
+    #房产材料
+    Choose File    ${fjxx_fcclInput_xpath}    ${fjxx_fcclInput}
+    sleep    3
+
+附件信息-上传房产材料
+    #房产材料
+    Click Button    ${fjxx_uploadTbody10_xpath}
+    Sleep    3
+
+附件信息-选择房贷还款流水
+    [Arguments]    ${fjxx_fdhklsInput}
+    [Documentation]    必传参数： ${fjxx_fdhklsInput}
+    ...
+    ...    在data文件中取值
+    #房贷还款流水
+    Choose File    ${fjxx_fdhklsInput_xpath}    ${fjxx_fdhklsInput}
+    sleep    3
+
+附件信息-上传房贷还款流水
+    #房贷还款流水
+    Click Button    ${fjxx_uploadTbody11_xpath}
+    Sleep    3
+
+附件信息-选择住址证明
+    [Arguments]    ${fjxx_zzzzInput}
+    [Documentation]    必传参数： ${fjxx_zzzzInput}
+    ...
+    ...    在data文件中取值
+    #住址证明
+    Choose File    ${fjxx_zzzzInput_xpath}    ${fjxx_zzzzInput}
+    sleep    3
+
+附件信息-上传住址证明
+    #住址证明
+    Click Button    ${fjxx_uploadTbody12_xpath}
+    Sleep    3
+
+附件信息-选择派遣合同
+    [Arguments]    ${fjxx_pqhtInput}
+    [Documentation]    必传参数： ${fjxx_pqhtInput}
+    ...
+    ...    在data文件中取值
+    #派遣合同
+    Choose File    ${fjxx_pqhtInput_xpath}    ${fjxx_pqhtInput}
+    sleep    3
+
+附件信息-上传派遣合同
+    #派遣合同
+    Click Button    ${fjxx_uploadTbody13_xpath}
+    Sleep    3
+
+附件信息-选择其他
+    [Arguments]    ${fjxx_otherCard}
+    [Documentation]    必传参数： ${fjxx_otherCard}
+    ...
+    ...    在data文件中取值
+    #其他
+    Choose File    ${fjxx_otherCard_xpath}    ${fjxx_otherCard}
+    sleep    3
+
+附件信息-上传其他
+    #其他
+    Click Button    ${fjxx_uploadTbody14_xpath}
+    Sleep    3
+
+附件信息附件上传确认
+    Click Element    ${fjxx_qrsc_css}
+
+附件信息-批量上传
+    Click Button    ${fjxx_plsc_xpath}
+    sleep    5
+
+附件信息-批量下载
+    Click Button    ${fjxx_plxz_xpath}
+    sleep    5
+
+附件信息-预览
+    Click Button    ${fjxx_yl_xpath}
+
+附件信息-预览上一步
+    Wait Until Element Is Visible    ${fjxx_ylsyb_xpath}    10    页面超时
+    Click Button    ${fjxx_ylsyb_xpath}
+
+附件信息-预览返回
+    Wait Until Element Is Visible    ${fjxx_ylfh_xpath}    10    页面超时
+    Click Button    ${fjxx_ylfh_xpath}
+
+附件信息上一步
+    Click Button    ${fjxx_syb_xpath}
+    sleep    2
+
+附件信息返回
+    Click Button    ${fjxx_fh_xpath}
+    sleep    2
+
+附件信息-提交
+    Click Button    ${fjxx_tj_xpath}
+    sleep    5
+
+附件信息-提交确认
+    Click Button    ${fjxx_tjzyqr_xpath}
